@@ -1,0 +1,156 @@
+// img {
+//     cursor: pointer;
+//     width: 100px;
+//     height: 100px;
+//   }
+.card-collect label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.mt-20{
+  margin-top: 20px;
+}
+.mt{
+  margin-top: 20px;
+}.card-upload {
+  border: 1px dashed #939aa8;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0;
+  cursor: pointer;
+  img {
+    width: 60px;
+    margin-bottom: 15px;
+  }
+  h5 {
+    font-weight: 600;
+    font-size: 18px;
+    color: #0f0f0f;
+  }
+  p {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    color: #676767;
+  }
+}
+.btn-upload {
+  background: #dc3545;
+  color: #fff;
+  border-radius: 10px;
+  padding: 12px 35px;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.card-img {
+  img {
+    width: 100%;
+    border-radius: 8px;
+    margin: 0px;
+  }
+}
+.overlay-bi {
+  position: absolute;
+  background-color: rgb(199 199 199 / 21%);
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 1;
+}
+.card-form .edit-btn {
+  margin: -30px 0 0 0;
+  z-index: 5;
+  position: relative;
+  .btn {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin: 0px;
+    padding: 0px;
+  }
+}
+
+.uploadedfile {
+  border: 1px solid #11af22;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .btn {
+    background: #fff3f3;
+    border-radius: 50%;
+    margin: 0px 0px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 15px;
+    }
+  }
+  p {
+    font-size: 14px;
+    padding: 10px;
+    color: #696969;
+    margin: 0px;
+    cursor: pointer;
+  }
+}
+.uplod {
+  font-size: 14px;
+  font-weight: 500;
+  color: #676767;
+}
+.save-img {
+  width: 22px !important;
+}
+.fileView {
+  img {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+.labl-txt{
+
+  font-size: 10px;
+}
+.card-collect .card-sm p {
+  font-size: 16px;}
+  .edit-img{
+width: 25px;
+cursor: pointer;
+  }
+  .status-alert{
+    color: #DB5AEE;
+    border-radius: 5px;
+    background-color: #FCE5FF;
+    padding: 9px;
+  }
+  .btn-cancel {
+    background: #fff;
+    color: #DC3545;
+    border-radius: 5px;
+    border-color: white;
+    font-weight: bold;
+  }
+  .btn-update{
+    background: #fff;
+    color: #4E9AFF;
+    border-radius: 5px;
+    border-color: white;
+    font-weight: bold;
+    
+  }
+  .form-check-input:checked {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    margin: 5px;
+}

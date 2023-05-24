@@ -1,0 +1,23 @@
+<div *ngIf="type == 1">
+  <div class="modal-body">
+    <div class="message">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <h4> The session will end in {{minute || 15}} min </h4>
+    </div>
+  </div>
+  <div class="btns-group">
+    <button type="button" class="btn btn-save" (click)="activeModal.close('Close click')">Ok</button>
+  </div>
+</div>
+
+<div *ngIf="type == 2">
+  <div class="modal-body">
+    <div class="message">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <h4> Session Timeout ! </h4>
+    </div>
+  </div>
+  <div class="btns-group">
+    <button type="button" class="btn btn-save" (click)="closeSession()"> Close register</button>
+  </div>
+</div>

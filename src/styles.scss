@@ -1,0 +1,774 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "./global.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;500;600;700&display=swap");
+
+body {
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div,
+button,
+select,
+textarea,
+input,
+ul,
+li,
+label {
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.page-title {
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px 10px 0px 20px;
+  }
+}
+.card-form {
+  background: #ffffff;
+  border: 0.5px solid #c4cdd5;
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  margin: 0px 20px 20px;
+  padding: 30px;
+  .form-group {
+    margin-bottom: 30px;
+  }
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1b212d;
+    margin-bottom: 10px;
+  }
+  .form-control {
+    border: 1px solid #d1d1d1;
+    border-radius: 12px;
+    font-size: 14px !important;
+    height: 46px;
+  }
+  .form-check-input:checked {
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+
+  .form-check.form-switch {
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    .form-check-input {
+      width: 3em !important;
+      height: 1.6em;
+    }
+    label {
+      margin-bottom: 0px;
+      margin: 0px 10px;
+    }
+  }
+  .error {
+    font-size: 14px;
+    color: #f44336;
+    font-weight: 500;
+    padding: 7px;
+    display: block;
+  }
+  .labelactive {
+    margin-right: 55px !important;
+  }
+  .edit-btn {
+    margin: 0px 15px;
+    z-index: 5;
+    position: relative;
+    .btn {
+      color: #dc3545;
+      font-size: 28px;
+      margin-top: -14px;
+      border: 0px;
+    }
+    i {
+      font-size: 22px;
+    }
+    img {
+      width: 22px;
+    }
+  }
+
+  .from-to-time {
+    display: flex;
+    margin-bottom: 15px;
+    p {
+      font-size: 16px;
+      color: #000;
+      padding: 10px;
+      font-weight: 600;
+    }
+  }
+}
+.save-img {
+  width: 36px !important;
+}
+.btns-group {
+  margin: 30px 20px 50px;
+  display: flex;
+  justify-content: end;
+  gap: 30px;
+  .btn-save {
+    background: #dc3545;
+    color: #fff;
+    border-radius: 10px;
+    padding: 12px 35px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .btn-save:hover {
+    background: #dc3545;
+    color: #fff;
+  }
+  .btn-load {
+    font-size: 23px;
+    padding: 0px 52px;
+  }
+  .btn.btn-load:disabled {
+    background: #dc3545 !important;
+    color: #fff !important;
+  }
+  .btn-cancel {
+    background: #f8f8f8;
+    color: #dc3545;
+    border-radius: 10px;
+    padding: 12px 35px;
+    font-weight: 600;
+  }
+  .btn-cancel:hover {
+    background: #f8f8f8;
+    color: #dc3545;
+  }
+}
+
+.iti.iti--allow-dropdown {
+  width: 100%;
+}
+input.form-control:focus {
+  box-shadow: none;
+  outline: 0px;
+}
+
+.card-page {
+  padding: 5px;
+}
+
+.search-box {
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  padding: 5px;
+  .form-control {
+    background-color: #f8f8f8;
+    border: 0px;
+    font-size: 14px;
+  }
+}
+.btnadd {
+  .btn-add {
+    background-color: #dc3545;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    white-space: nowrap;
+    img {
+      width: 25px;
+      margin-inline-end: 10px;
+    }
+  }
+  .btn-add:hover {
+    background-color: #dc3545;
+    color: #fff;
+  }
+}
+@media (max-width: 768px) {
+  .btn-add {
+    margin: 15px 0px;
+  }
+}
+.fa-spin {
+  -webkit-animation: fa-spin 0.2s infinite;
+  animation: fa-spin 0.2s infinite;
+}
+.loading {
+  text-align: center;
+  padding: 60px 30px;
+  i {
+    font-size: 46px;
+    color: #dc3545;
+  }
+}
+.pagination {
+  display: flex;
+  justify-content: end;
+  .page-link {
+    border: 2px solid #bdbdbd;
+    border-radius: 10px !important;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #313131;
+    text-align: center;
+    margin: 2px 5px;
+    width: 40px;
+  }
+  .page-link.active {
+    background: #dc3545;
+    color: #fff;
+    border: 2px solid #dc3545;
+    box-shadow: 0px 7px 16px rgba(0, 0, 0, 0.14);
+    border-radius: 10px !important;
+  }
+}
+.card-table {
+  margin: 30px 0px;
+  background: #ffffff;
+  border: 0.5px solid #c4cdd5;
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.05);
+  // box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  .table {
+    margin: 0px;
+  }
+  thead {
+    background-color: #f8f8f8;
+    th {
+      color: #1b212d;
+      font-size: 14px;
+      font-weight: 600;
+      vertical-align: middle;
+      padding: 10px 15px !important;
+
+      .btn {
+        color: #1b212d;
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+        border: 0px;
+      }
+      i {
+        color: #acb5c1;
+      }
+      i.active {
+        color: #333;
+      }
+      img {
+        width: 20px;
+      }
+    }
+  }
+  td {
+    color: #1b212d;
+    font-size: 14px;
+    font-weight: 600;
+    vertical-align: middle;
+    padding: 10px 5px 10px 25px !important;
+  }
+  .btn-view {
+    color: #4e9aff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 1px;
+    white-space: nowrap;
+  }
+  .btn-collect {
+    background-color: #dc3545;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 15px;
+    white-space: nowrap;
+  }
+  .btn-collect:hover {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  .not-found {
+    padding: 10%;
+    text-align: center;
+    h4 {
+      color: #c9c9d1;
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+
+  .form-check-input:checked {
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+
+  .form-check-input {
+    width: 3em !important;
+    height: 1.6em;
+  }
+
+  .form-check-input:disabled {
+    pointer-events: none;
+    filter: none;
+    opacity: 1;
+  }
+}
+
+.switch-check {
+  .form-check-input:checked {
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+  .form-check-input {
+    width: 3em !important;
+    height: 1.6em;
+  }
+  .form-check-input:disabled {
+    pointer-events: none;
+    filter: none;
+    opacity: 1;
+  }
+}
+
+.card-table .table thead tr:hover {
+  background-color: #f8f8f8;
+}
+.card-table .table tbody tr:hover {
+  background-color: #fffafb;
+}
+.showing {
+  font-size: 14px;
+  color: #000;
+  font-weight: 600;
+  span {
+    color: #dc3545;
+  }
+}
+
+.ng-select .ng-select-container {
+  cursor: default;
+  display: flex;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #d1d1d1;
+  border-radius: 12px;
+  font-size: 14px !important;
+  height: 46px !important;
+  width: 100%;
+}
+.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+  top: 12px;
+}
+// @media (max-width: 768px) {
+//   ::-webkit-scrollbar {
+//     width: 5px;
+//     width: 3px;
+//   }
+
+//   /* Track */
+//   ::-webkit-scrollbar-track {
+//     background: #f1f1f1;
+//   }
+
+//   /* Handle */
+//   ::-webkit-scrollbar-thumb {
+//     background: #888;
+//   }
+
+//   /* Handle on hover */
+//   ::-webkit-scrollbar-thumb:hover {
+//     background: #555;
+//   }
+// }
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  background-color: #f5faff;
+  color: #333;
+  font-size: 14px;
+}
+
+// .modal.show .modal-dialog {
+//   top: 20%;
+// }
+
+.top-details {
+  display: flex;
+  justify-content: space-between;
+  p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    span {
+      color: #929EAE;
+    }
+  }
+}
+.customerDetail {
+  background-color: #f5f5f5;
+}
+.card-collect {
+  padding: 30px;
+  border: 0.5px solid #c4cdd5;
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-bottom: 30px;
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
+  .top-details {
+    border-bottom: 1px solid #dddd;
+    margin-bottom: 30px;
+    h3 {
+      margin-bottom: 15px;
+    }
+  }
+
+  .table > thead {
+    vertical-align: bottom;
+    background: #f8f8f8;
+  }
+  .collect-details {
+    display: flex;
+    gap: 20px;
+    .char {
+      background-color: #48a1bb;
+      color: #fff;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+  .total-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 5px 0;
+    p {
+      font-size: 14px;
+      font-weight: 600;
+      color: #000;
+      margin: 0px;
+    }
+    .total {
+      background-color: #f8f8f8;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 30px;
+      display: block;
+      border-radius: 9px;
+    }
+    .btn {
+      background-color: #dc3545;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 10px 30px;
+    }
+  }
+
+  .card-sm {
+    margin-bottom: 15px;
+
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1b212d;
+      margin-bottom: 5px;
+    }
+    p {
+      font-size: 14px;
+      font-weight: 500;
+      color: #929eae;
+    }
+  }
+
+  label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .table {
+    th {
+      padding: 10px 5px;
+    }
+    td {
+      color: #1b212d;
+      font-size: 14px;
+      padding: 15px 5px;
+      vertical-align: middle;
+    }
+  }
+
+  .curncy {
+    border-bottom: 1px solid #748097;
+    padding-bottom: 25px;
+    margin-bottom: 15px;
+    h3 {
+      font-weight: 500;
+      font-size: 16px;
+      color: #111;
+      margin: 0px;
+    }
+  }
+}
+.ng-select.ng-select-multiple
+  .ng-select-container
+  .ng-value-container
+  .ng-placeholder {
+  top: 12px;
+}
+
+.ng-select.ng-select-multiple
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: #fff;
+  background-color: #dc3545;
+  border-radius: 2px;
+  margin-right: 5px;
+  padding: 8px;
+  border-radius: 8px;
+  direction: rtl;
+}
+
+.ng-select.ng-select-multiple
+  .ng-select-container
+  .ng-value-container
+  .ng-value
+  .ng-value-icon.left {
+  border-right: 0px solid #b8dbff;
+}
+.ngselect-curruncy {
+  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+    padding: 0px;
+  }
+  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    padding: 0;
+    span {
+      width: 100%;
+      display: block;
+      padding: 10px;
+    }
+  }
+}
+
+.pending {
+  // background-color: #fff3db;
+  // color: #ffb155;
+  border-radius: 8px;
+  padding: 10px 30px;
+  font-weight: 600;
+
+  width: 125px !important;
+  display: block;
+  text-align: center;
+
+}
+.rejected {
+  background-color: #ffdbdb;
+  color: #dc3545;
+  border-radius: 8px;
+  padding: 10px 30px;
+  font-weight: 600;
+}
+.approved {
+  background-color: #bbf3e0;
+  color: #12a474;
+  border-radius: 8px;
+  padding: 10px 30px;
+  font-weight: 600;
+}
+// ===== auth pages - login, create, forgot password  =====
+
+.bg-image {
+  height: 100vh;
+  img {
+    width: 100%;
+    height: 100vh;
+  }
+}
+.page-login {
+  height: 100vh;
+}
+.card-login {
+  border: 1px solid #fff;
+  padding: 30px;
+  margin: 16% auto 5%;
+  max-width: 380px;
+
+  img {
+    width: 100%;
+    margin: 0px auto 20px;
+  }
+
+  .log-text {
+    padding: 20px 0px;
+    h3 {
+      font-weight: 600;
+      font-size: 22px;
+    }
+    p {
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 20px;
+      color: #667085;
+      padding: 10px 0;
+      margin: 0px;
+      letter-spacing: 0.1px;
+    }
+  }
+  h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #667085;
+    text-align: center;
+    padding: 30px 5px 0px;
+  }
+  .or-line {
+    border-bottom: 1px solid #666;
+    margin-bottom: 50px;
+    h6 {
+      text-align: center;
+      background: white;
+      color: #667085;
+      display: block;
+      margin: 0px auto -10px;
+      width: 50px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+  .form-group {
+    margin-bottom: 30px;
+    position: relative;
+  }
+  label {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1b212d;
+    margin-bottom: 10px;
+  }
+  .form-control {
+    font-size: 14px;
+    height: 46px;
+    // padding-left: 50px;
+  }
+  img.uimg {
+    width: 25px;
+    top: 42px;
+    margin-left: 10px;
+    position: absolute;
+  }
+  .passicon {
+    color: #d1d1d1;
+    position: absolute;
+    right: 25px;
+    top: 44px;
+  }
+  .error {
+    color: #f44336;
+    font-size: 14px;
+    padding: 5px;
+    display: block;
+    font-weight: 500;
+  }
+  .rememberme {
+    display: flex;
+    justify-content: space-between;
+    .form-check-input:checked {
+      background-color: #dc3545;
+      border-color: #dc3545;
+    }
+    .forgetpass {
+      color: #dc3545;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+  .btn-login {
+    background: #dc3545;
+    box-shadow: 0px 10px 20px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    width: 100%;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px;
+    border: 1px solid #dc3545;
+  }
+  .btn-login:hover {
+    background: #dc3545;
+    color: #fff;
+  }
+  .btn-back {
+    color: #dc3545;
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 40px auto 10px;
+  }
+  .btn-back:hover {
+    color: #dc3545;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-login {
+    padding: 30px;
+    margin: 5% auto;
+  }
+}
+.form-check {
+  cursor: pointer;
+  label {
+    cursor: pointer;
+  }
+}
+// =====  end auth pages -   =====
+.bs-datepicker-head {
+  background-color: #dc3545 !important;
+}
+.cursor-pointer {
+  cursor: pointer !important;
+}
+.bs-datepicker-body{
+  background-color: #ffffff;
+  padding: 15px 15px 15px 15px;
+  // border-spacing: 1em 0.5em;
+  padding: 10px 1em 1em 10px;
+  border: 15px solid rgb(247, 245, 241);
+}
+.bs-media-container{
+  display: flex!important;
+}
+.mt-20{
+  margin-top: 20px;
+}
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";

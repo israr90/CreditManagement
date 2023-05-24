@@ -1,0 +1,80 @@
+<div class="page-login">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="card-login">
+          <img src="assets/images/markazia.png" alt="logo">
+          <div>
+            <p>Please fill your password to finish setting up <br>
+              your Markazia account and accessing your account. </p>
+          </div>
+          <form [formGroup]="formActive" (ngSubmit)="CreatePassword()" autocomplete="off">
+            <div class="form-group">
+              <label>Phone Number</label>
+              <div>
+                <img class="uimg" src="assets/images/user.png" alt="">
+                <input type="text" autocomplete="off" formControlName="Mobile" placeholder="" class="form-control"
+                  ng2TelInput [ng2TelInputOptions]="{'preferredCountries': ['jo', 'sa']}" min="8" max="10" minlength="8"
+                  maxlength="10" (keypress)="numberOnly($event)" required="" />
+                <div
+                  *ngIf="submitted && formValid['Mobile'].invalid || formValid['Mobile'].invalid && (formValid['Mobile'].dirty || formValid['Mobile'].touched)"
+                  class="ng-dirty">
+                  <span class="error" *ngIf="formValid['Mobile'].errors['required']"> This element is required, please
+                    fill.</span>
+                  <span *ngIf="formValid['Mobile'].errors['minlength']">
+                    <span class="error">The digits are less than 10 for (mobile) and the digits are more than 8
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <div>
+                <input [type]="IsshowPassword ? 'text' : 'password'" autocomplete="off" formControlName="Password"
+                  class="form-control" required="" min="8" max="16" minlength="8" maxlength="16">
+                <div class="passicon">
+                  <fa-icon (click)="showPassword()" *ngIf="!IsshowPassword" class="custom-search-botton"
+                    [icon]="faEye"></fa-icon>
+                  <fa-icon (click)="showPassword()" *ngIf="IsshowPassword" class="custom-search-botton"
+                    [icon]="faEyeSlash"></fa-icon>
+                </div>
+              </div>
+              <div
+                *ngIf="submitted && formValid['Password'].invalid ||  formValid['Password'].invalid && (formValid['Password'].dirty || formValid['Password'].touched)"
+                class="ng-dirty">
+                <span class="error" *ngIf="formValid['Password'].errors['required']"> This element is required,
+                  please fill.</span>
+                <div *ngIf="formValid['Password'].errors['minlength']">
+                  <span class="error">Password cannot be less than 8 characters </span>
+                </div>
+              </div>
+              <!-- <h1> {{formGroup.get('Password').value.length}} </h1> -->
+              <div [hidden]="formActive.get('Password').value.length < 5">
+                <span class="error" *ngIf="formActive.get('Password').hasError('strong')">
+                  Password should contain a minimum combination of 1 uppercase letter, 1 lowercase letter, 1 number,
+                  and
+                  1 symbol</span>
+              </div>
+              <div>
+
+              </div>
+            </div>
+
+            <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+              {{errorMessage}}
+            </div>
+            <div>
+              <button type="submit" class="btn btn-login">Activate Account</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="bg-image">
+          <img src="assets/images/loginLogo.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+.title-center{
+    text-align: center;
+}
+.mt-25{
+margin-top: 25px;
+}
+.mb-25{
+    margin-bottom: 25px;
+}
+.mt-10{
+    margin-top: 10px;
+    }
+    .mb-10{
+        margin-bottom: 10px;
+    }
+    .btn-add-port
+    {
+       background: transparent;
+       width: 150px;
+       margin-top: 19px;
+       height: 56px;
+       border: aliceblue;
+       cursor: pointer;
+    }
+    .mt-50{
+        margin-top: 50px;
+        }
+        .mb-50{
+            margin-bottom: 50px;
+        }
+        
+      
+          ul.ddown
+          {
+            background-color: #f4f4f4;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            padding-left: 10px;
+            width: 80%;
+            margin-left: 40px;
+            max-height: 400px;
+            // border: 1px solid #ccc;
+            // max-height:200px;
+            // overflow:scroll; 
+            // overflow: scroll;
+            // overflow-x: hidden;
+            // height: 200px;
+          }
+          .selection{
+           margin: 10px;
+           width: 300px;
+          }
+          li.selection:hover{
+            background-color: #f4f4f4;
+            cursor: pointer;
+            padding: 2px;
+          }
+
+         
+        li {
+            border-top: 1px solid #ccc;
+        }
+        
+        ul ul {
+            text-indent: 1em;
+        }
+        
+        ul ul ul {
+            text-indent: 2em;
+        }
+ 
+          .radioBtn{
+            margin: 10px;
+          }
+          .btn-img{
+            width: 20px !important;
+            }
+          

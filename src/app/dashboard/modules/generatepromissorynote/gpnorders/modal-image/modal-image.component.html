@@ -1,0 +1,20 @@
+<div class="modal-body">
+  <div class="imagepath" *ngIf="imagePath">
+    <img [src]="imagePath" alt="">
+  </div>
+  <div class="imagepath-no" *ngIf="!imagePath">
+    <h5> No Found </h5>
+  </div>
+
+  <div class="imagepath-no" *ngIf="isPdf == true">
+    <div class="card-pdf">
+      <img src="assets/images/pdf.png" alt="">
+      <br>
+      <a [href]="imagePath" target="_blank">click to open pdf </a>
+    </div>
+  </div>
+
+  <div class="btns-group my-2 mx-0">
+    <button type="button" class="btn btn-cancel " (click)="activeModal.close('Close click')">Close</button>
+  </div>
+</div>

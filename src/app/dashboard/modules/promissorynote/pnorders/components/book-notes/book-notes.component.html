@@ -1,0 +1,229 @@
+<h5>List of Promissory Notes</h5>
+<!-- <div class="col-md-12" *ngIf="workorders; let workorders; else: loading "> -->
+  <div class="col-md-12">
+  <div class="card-table">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">
+              <button class="btn" > No
+            
+              </button>
+            </th>
+            <th scope="col">
+              <button class="btn" > Customer Name
+             
+              </button>
+            </th>
+         
+            <th scope="col">
+              <span>
+                <button class="btn" style="cursor:default!important;" > Amount
+               
+                </button>
+              </span>
+             
+            </th>
+            <th scope="col">
+              <span>
+                <button class="btn" style="cursor:default!important;" > Due Date
+      
+                </button>
+              </span>
+             
+            </th>
+            <th scope="col">
+              <button class="btn">  Status
+             
+              </button>
+            </th>
+          
+            <th scope="col" > <button class="btn btn-act"> Action </button></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of BookNotes; let i = index" >
+
+             
+            <td > {{item.pnBookNoteId}}</td>
+            <td >{{CustomerName}}     </td>
+            <td >{{item.pnAmount}}</td>
+            <td > {{item.dueDate | date:' d MMM y h:mm a'}} </td>
+            
+            <td >
+              <span class="status-alert" [style.backgroundColor]="item.statusObj.lookupBGColor ? item.statusObj.lookupBGColor : '#e3f1e7'" [style.color]="item.statusObj.lookupTextColor ? item.statusObj.lookupTextColor : '#0dd617'">{{item.statusObj.description}}</span>
+                <!-- <span class="status-alert" style="padding: 5px;background-color:'  {{ item.statusObj.lookupBGColor ? item.statusObj.lookupBGColor : 0 }}';border-radius: 5px; color:'  {{ item.statusObj.lookupTextColor ? item.statusObj.lookupTextColor : 0 }}';">   {{item.statusObj.description}}  </span> </td> -->
+            <td>
+               <!-- <img src="/assets/images/btn-img.png" style="cursor: pointer;" (click)="ShowDetails(item)" (click)="openModal(item)">  -->
+               <img src="/assets/images/btn-img.png" style="cursor: pointer;"  (click)="openModal(content,item.pnBookNoteId)"> 
+            </td></tr> 
+         
+        </tbody>
+      </table>
+    </div>
+    <div class="not-found" *ngIf="BookNotes?.length == 0">
+      <h4> No Order  </h4>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="total-card">
+          <!-- <p> Total Price For Spare Parts </p>
+          <div class="total"> {{totaAmount}} JD </div> -->
+        </div>
+      </div>
+      <div class="col-md-6 " [hidden]="BookNotes?.length == 0 || totalRecordCount <3">
+        <ul class="pagination">
+          <li class="page-item" *ngFor="let page of pages">
+            <button class="page-link" (click)="setPage(page)" [ngClass]="{ active: pageNo === page }"
+              [disabled]="pageNo === page">
+              {{ page + 1 }}
+            </button>
+          </li>
+        </ul>
+      </div>
+ 
+    </div>
+   
+    <!-- <div class="not-found" *ngIf="workorders.length == 0">
+      <app-not-found></app-not-found>
+    </div> -->
+  </div>
+  <div class="col-md-12">
+    <div class="btns-group">
+
+      <button type="submit" *ngIf="!isLogShow" class="btn btn-hidelog" (click)="HideLog()"  > Hide Log </button>
+      <button type="submit"  *ngIf="isLogShow"class="btn btn-viewlog" (click)="HideLog()"  > View Log </button>
+      
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12" *ngIf="!isLogShow">
+  <div class="card-table">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">
+              <button class="btn" > Employee Name
+            
+              </button>
+            </th>
+            <th scope="col">
+              <button class="btn" > Status
+             
+              </button>
+            </th>
+         
+            <th scope="col">
+              <span>
+                <button class="btn" style="cursor:default!important;" > Date & Timr
+               
+                </button>
+              </span>
+             
+            </th>
+            <th scope="col">
+              <span>
+                <button class="btn" style="cursor:default!important;" > Action
+      
+                </button>
+              </span>
+             
+            </th>
+          
+          </tr>
+        </thead>
+        <tbody>
+            <tr >
+            <td>TEST</td>
+            <td>   <span class="status-alert" style="padding: 5px;background-color: #FFF3DB;border-radius: 5px; color: #FFB155;"> Pending</span>  </td>
+            <td> 22-10-2000</td>
+            <td><a href="">10 Promissory notes have been generated</a></td>
+          </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    <!-- <div class="not-found" *ngIf="workorders.length == 0">
+      <app-not-found></app-not-found>
+    </div> -->
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="fc-modal p-4">
+    <div class="modal-header p-0">
+      <h5 style="margin-bottom: 20px;">Promissory Note Details</h5>
+      <span class="status-alert" [style.backgroundColor]="BookNoteDetails.statusObj.lookupBGColor ? BookNoteDetails.statusObj.lookupBGColor : '#e3f1e7'" [style.color]="BookNoteDetails.statusObj.lookupTextColor ? BookNoteDetails.statusObj.lookupTextColor : '#0dd617'">{{BookNoteDetails.statusObj.description}}</span>
+      <!-- <button type="button"  class="btn btn-log" >{{BookNoteDetails.statusObj.description}} </button> -->
+    </div>
+    <div class="modal-body p-0">
+      <div class="body-layout mt-3">
+        
+          
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="card-sm">
+                      <h5> Customer Name</h5>
+                     <p> {{ BookNoteDetails.customer.customerName ? BookNoteDetails.customer.customerName : 'No data' }}</p>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="card-sm">
+                      <h5> Promissory Note Paid By</h5>
+              
+                      <p> {{ BookNoteDetails.paidByName ? BookNoteDetails.paidByName : 'No data' }}</p>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="card-sm">
+                      <h5> Promissory Note Book Number</h5>
+                      <p> {{ pnBookNotedId ? pnBookNotedId : 'No data' }}</p>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="card-sm">
+                      <h5> Promissory Note Number</h5>
+                      <!-- <p> {{ BookNoteDetails.collectedAmount ? BookNoteDetails.collectedAmount : 'No data' }}</p> -->
+                      <p>No data</p>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="card-sm">
+                      <h5> Promissory Note Total Collected Amount</h5>
+                      <p> {{ BookNoteDetails.collectedAmount }}</p>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="card-sm">
+                      <h5> Promissory Note Remaining Amount</h5>
+                      <p> {{ BookNoteDetails.remainingAmount }}</p>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="card-sm">
+                      <h5> Collected History Link</h5>
+                      <p> {{ BookNoteDetails.orderCollectionID ? BookNoteDetails.orderCollectionID : 'No data' }}</p>
+                    </div>
+                  </div>
+    
+                
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    <div class="modal-footer p-0">
+      <div class="btns-group">
+          <button type="button" class="btn btn-add " (click)="print()"  >Print </button>
+                  <!-- <button type="submit" class="btn btn-save" (click)="Back()"  > Close </button> -->
+        <button type="button" class="btn btn-cancel" (click)="modal.close('Save click')">Close</button>
+        <!-- <button type="button" class="btn btn-save" (click)="handleSubmit()">Submit</button> -->
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,46 @@
+<div class="side-nav-content">
+
+  
+  <ul class="nav-list" [ngClass]="{'nav-list-open':sideNavStatus}">
+    <ng-container *ngFor="let item of navList; let i = index">
+
+        <ng-container>
+          <button class="nav-list-item" (click)="onSelectMenu(i)" [routerLink]='item.url' routerLinkActive="active"
+            #rla="routerLinkActive">
+            <img [src]="rla.isActive ? item.Icon2 : item.Icon" alt="">
+            <span *ngIf="item.title=='Promissory Notes Orders'">Promissory Notes <br> Orders
+            </span>
+            <span *ngIf="item.title!='Promissory Notes Orders'"> {{item.Title}}
+            </span>
+          </button>
+        </ng-container>
+      </ng-container>
+  </ul>
+
+  <!-- <a [ngClass]="{'a-active': val.IsActive ===true }">{{val.Title}}</a> -->
+
+  <div *ngIf="sideNavStatus" class="col-xs-3">
+    <div style="position:fixed; top:0; bottom:40px;">
+      <footer style="position:fixed; bottom: 0; overflow: hidden; height:150px;">
+        <li class="nav-list-item">
+          <img src="../../../assets/images/help.png" alt="">
+          <span>
+            Help
+          </span>
+        </li>
+        <li class="nav-list-item">
+          <img src="../../../assets/images/logout.png" alt="">
+          <span (click)="logout()" style="cursor: pointer;">
+            Logout
+          </span>
+        </li>
+        <!-- <div class="list-group list-group-flush mx-3 mt-4">
+            <a> <span style="padding-right: 10px;"></span> <img src="../../../assets/images/help.png" alt=""> Help</a>
+          </div>
+          <div class="list-group list-group-flush mx-3 mt-4">
+            <a> <span style="padding-right: 10px;"></span> <img src="../../../assets/images/logout.png" alt=""> Logout</a>
+        </div> -->
+      </footer>
+    </div>
+  </div>
+</div>

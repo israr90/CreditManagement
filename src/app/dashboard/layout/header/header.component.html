@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand px-2">
+
+  <a *ngIf="!iscollapse" (click)="mainPage()" class="navbar-brand px-1">
+    <img width="105" height="17.5" src="assets/images/markazia-d.png" alt="">
+  </a>
+  <button (click)="SideNavToggle()" [style.margin-left.px]="[marginleft]" class="btn btn-danger btn-circle"> <fa-icon
+      *ngIf="!iscollapse" [icon]="faArrowLeft"> </fa-icon> <fa-icon *ngIf="iscollapse" [icon]="faArrowRight"></fa-icon>
+  </button>
+
+  <div class="navbar-collapse px-3">
+    <div *ngIf="showTitle" class="page-Tile"> {{titleOfPage}} <span *ngIf="pagename"> > </span> {{pagename.slice(1)}}
+    </div>
+  </div>
+  <!-- <span *ngIf="pagename"> > </span>  {{pagename.slice(1)}} -->
+  <ul class="navbar-nav ms-auto d-flex flex-row">
+    <!-- <li *ngIf="showTitle" class="nav-item me-3 me-lg-0"></li> -->
+    <!-- <li class="nav-item">
+      <a class="nav-link">
+        <span class="char-name"> {{firstName | slice:0:1 }}{{lastName | slice:0:1 }} </span> {{firstName}} {{lastName}}
+      </a>
+    </li> -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="char-name"> {{firstName | slice:0:1 }}{{lastName | slice:0:1 }} </span> {{firstName}} {{lastName}}
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" routerLink="/profile">My Profile</a></li>
+      </ul>
+    </li>
+
+  </ul>
+</nav>

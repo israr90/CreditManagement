@@ -1,0 +1,370 @@
+
+<form [formGroup]="GenerateOrderForm" (ngSubmit)="onSubmit()">
+ 
+  <ng-container *ngIf="!isLoadingView">
+  <div class="card-page">
+  <div class="row">
+  <div class="col-md-12">
+      <div class="card-collect">
+        <h3 style="margin-bottom: 20px;"> Customer Information </h3>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <hr>
+              <div class="col-sm-3">
+                <div class="card-sm">
+                  <label> Name</label>
+                  <p>
+                    
+                    {{PNorders?.customer.customerName}}
+
+                  </p>
+                  
+                  <!-- <input type="text" name="customername" formControlName="customername" #customername    class="form-control" /> -->
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card-sm">
+                  <label> Phone No</label>
+                  <p >    {{PNorders.customer.mobile}}</p>
+                  <!-- <input type="text" name="customerphone"  formControlName="customerphone" class="form-control"> -->
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card-sm">
+                  <label> Total Amount</label>
+<p>               {{PNorders.totalAmount}}</p>
+    
+                  <!-- <input type="text" name="totalAmount"  formControlName="totalAmount" class="form-control"> -->
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card-sm">
+                  <label> Promissory Notes Amount</label>
+                  <p> {{PNorders.pnTotalAmount}}</p>
+                 
+            
+                  <!-- <input type="text" name="pnamount"   formControlName="pnamount" class="form-control"> -->
+                </div>
+              </div>
+
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="card-collect">
+        <h3 style="margin-bottom: 20px;"> Order Information </h3>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <hr>
+              <div class="col-sm-2">
+                <div class="card-sm">
+                  <label> Order No</label>
+                 <p> {{PNorders.orderId}}</p>
+                  <!-- <input type="text" name="orderno"  formControlName="orderno" class="form-control"> -->
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card-sm">
+                  <label> Order Link</label>
+                  <p>
+                    <a href="{{PNorders.orderQNTRLLink}}" target="_blank">{{PNorders.orderQNTRLLink}}</a>
+                    
+                  </p>
+                  
+                  <!-- <input type="text" name="orderlink"  formControlName="orderlink" class="form-control"> -->
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="card-sm">
+                  <label> Branch</label>
+                  <p>
+                    {{PNorders.branch.branchName}}
+                  </p>
+      
+                  <!-- <input type="text" name="branch" formControlName="branch"  class="form-control"> -->
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="card-sm">
+                  <label> Order Date</label>
+                  <p>
+                    {{PNorders.orderDate | date:'yyyy-MM-dd'}}
+                  </p>
+                 
+                  <!-- <input type="text" name="orderdate" formControlName="orderdate"  class="form-control"> -->
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card-sm">
+                  <label> Number Of Installments</label>
+                  <p>
+                    {{PNorders.numberOfInstallments}}
+                  </p>
+                  
+                  <!-- <input type="text" name="Name" formControlName="numberofinstallments" class="form-control"> -->
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="card-sm">
+                  <label> Start Date *</label>
+                 <!-- <input type="date" class="form-control" name="startdate" formControlName="startdate" [min]="today"> -->
+                 <input type="text" name="date"  formControlName="startdate" placeholder="Start date" class="form-control mt-3 mt-lg-0"    [min]="today" bsDatepicker [bsConfig]="{ containerClass: 'theme-red',isAnimated: true,showClearButton: false,dateInputFormat: 'YYYY-MM-DD' } " placement="bottom">
+                 <div *ngIf="GenerateOrderForm.get('startdate').invalid && (GenerateOrderForm.get('startdate').dirty || GenerateOrderForm.get('startdate').touched)">
+                  <small class="text-danger" *ngIf="GenerateOrderForm.get('startdate').errors['required']">Start date is required.</small>
+                </div>
+                </div>
+              </div>
+
+            
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="col-md-12">
+      <div class="card-collect">
+        <div class="row">
+          <div class="col-md-10">
+            <h3 style="margin-bottom: 20px;"> Guarantor Information </h3>
+          </div>
+          <div class="col-md-2">
+            
+              <input type="checkbox" class="form-check-input"   formControlName="Guarantor"  ><span class="margin-right">  Guarantor</span>
+     
+          </div>
+        </div>
+        
+        <div class="row" *ngIf="GenerateOrderForm.get('Guarantor').value==true">
+          <div class="col-md-12">
+            <div class="row">
+              <hr>
+              <div class="col-sm-3">
+                
+                <div class="form-group">
+                  <label> Guarantor Name *</label>
+                  <!-- {{PNorders.orderId}} -->
+                  <input type="hidden" name="OrderId " formControlName="OrderId "  autocomplete="off">
+               <input type="text" name="guarantorname" formControlName="guarantorname" class="form-control" OnlyCharacter autocomplete="off">
+               <div *ngIf="GenerateOrderForm.get('guarantorname').invalid && (GenerateOrderForm.get('guarantorname').dirty || GenerateOrderForm.get('guarantorname').touched)">
+                <small class="text-danger" *ngIf="GenerateOrderForm.get('guarantorname').errors['required']">Guarantor Name is required.</small>
+              </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label> Phone No *</label>
+                  <input type="text" name="guarantorphone" formControlName="guarantorphone" class="form-control" numbersOnly maxlength="10" autocomplete="off">
+                  <div *ngIf="GenerateOrderForm.get('guarantorphone').invalid && (GenerateOrderForm.get('guarantorphone').dirty || GenerateOrderForm.get('guarantorphone').touched)">
+                    <small class="text-danger" *ngIf="GenerateOrderForm.get('guarantorphone').errors['required']"> Phone No  is required.</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label> Grantor ID No. *</label>
+                  <input type="text" name="guarantoidno" formControlName="guarantoidno" class="form-control" autocomplete="off">
+                  <div *ngIf="GenerateOrderForm.get('guarantoidno').invalid && (GenerateOrderForm.get('guarantoidno').dirty || GenerateOrderForm.get('guarantoidno').touched)">
+                    <small class="text-danger" *ngIf="GenerateOrderForm.get('guarantoidno').errors['required']">Grantor ID No is required.</small>
+                  </div>
+              </div>
+
+            
+            </div>
+          </div>
+
+
+          <div class="row mt-20" *ngIf="isShowToUplaod ">
+            
+            <div class="row">
+            <div class="col-md-3">
+              <div class="form-group mb-3">
+                <label> Attachment (ID) * </label>
+                <div class="card-upload my-3" appImageDrag (files)="filesDropped($event)" (enter)="enter = !enter"
+                  (leave)="enter = !enter" accept=".png,.jpg,.jpeg,.pdf" (click)="fileUpload.click()">
+                  <div class="my-3">
+                    <img src="assets/images/upload.png" alt="">
+                    <h5>Drag & drop files</h5>
+                    <p>Supported formates: JPEG, PNG, PDF</p>
+                  </div>
+                </div>
+                <input type="file" class="form-control" accept=".png,.jpg,.jpeg,.pdf"  formControlName="IDFile"
+                  (change)="onSelectFile($event)" #fileUpload id="uploadFile" hidden />
+
+                  <div *ngIf="GenerateOrderForm.get('IDFile').invalid && (GenerateOrderForm.get('IDFile').dirty || GenerateOrderForm.get('IDFile').touched)">
+                    <small class="text-danger" *ngIf="GenerateOrderForm.get('IDFile').errors['required']">Attachment (ID) is required.</small>
+                    
+                  </div>
+              </div>
+              
+            </div>
+            <div class="col-md-3">
+              <div class="form-group mb-3">
+                <label> Attachment (Secret) * </label>
+                <div class="card-upload my-3" appImageDrag (files)="filesDropped2($event)" (enter)="enter2 = !enter2"
+                  (leave)="enter2 = !enter2" accept=".png,.jpg,.jpeg,.pdf" (click)="fileUpload2.click()">
+                  <div class="my-3">
+                    <img src="assets/images/upload.png" alt="">
+                    <h5>Drag & drop files</h5>
+                    <p>Supported formates: JPEG, PNG, PDF</p>
+                  </div>
+                </div>
+                <input type="file" class="form-control" accept=".png,.jpg,.jpeg,.pdf" formControlName="secretfile"
+                  (change)="onSelectSecretFile($event)" #fileUpload2 id="uploadFile2" hidden />
+                  <div *ngIf="GenerateOrderForm.get('secretfile').invalid && (GenerateOrderForm.get('IDFile').dirty || GenerateOrderForm.get('secretfile').touched)">
+                    <small class="text-danger" *ngIf="GenerateOrderForm.get('secretfile').errors['required']">Attachment (Secret)  is required.</small>
+                    
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+            <div class="col-md-3">
+              <div class="uploadedfile"  *ngIf="fileName">
+                <p (click)="openMdalImage()">{{fileName}}</p>
+                <div class="d-flex">
+                  <button class="btn fview" type="button" (click)="openMdalImage()">
+                    <img src="assets/images/eye.png" alt=""> </button>
+                       <a class="btn fview" type="button"  #downloadLink (click)="download()">
+                      <img src="assets/images/Download.png" alt=""> </a>
+                  <button type="button" class="btn" (click)="removeImageName()"> <img
+                      src="assets/images/trash.png" alt=""> </button>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-3">
+              <div class="uploadedfile"  *ngIf="fileName2">
+                <p (click)="openMdalImage2()">{{fileName2}}</p>
+                <div class="d-flex">
+                  <button class="btn fview" type="button" (click)="openMdalImage2()">
+                    <img src="assets/images/eye.png" alt=""> </button>
+                    <a class="btn fview" type="button"  #downloadSecretfileLink (click)="downloadSecretfile()">
+                      <img src="assets/images/Download.png" alt=""> </a>
+                  <button type="button" class="btn" (click)="removeImageName2()"> <img
+                      src="assets/images/trash.png" alt=""> </button>
+                </div>
+              </div>
+
+            </div>
+         
+          </div> 
+       
+          </div>
+
+          
+
+
+
+    </div>
+  
+
+
+  
+  </div>
+
+</div>
+ </div>
+ 
+ <div class="col-md-12" *ngIf="InstallmentList.length>0">
+  <div class="card-collect">
+    <h3 style="margin-bottom: 20px;"> List Of Promissory Notes </h3>
+    <div class="col-md-12">
+    <div class="card-table">
+      <div class="table-responsive">
+        <form [formGroup]="myForm">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">
+                 Order No
+              </th>
+              <th scope="col">
+               Customer Name
+
+              </th>
+           
+              <th scope="col">
+              Amount
+               
+              </th>
+              <th scope="col">
+              Due Date
+              </th>
+              <th scope="col">
+              Status
+              </th>
+              <th scope="col" > <button class="btn btn-act"> Action
+             
+              </button></th>
+            </tr>
+          </thead>
+          <tbody>
+           <tr *ngFor="let item of InstallmentList; let i = index">
+  <ng-container *ngIf="i !== editingRowIndex; else editableRow">
+    <!-- Original row -->
+    <td>{{item.No}}</td>
+    <td>{{item.CustomerName}}</td>
+    <td>{{item.InstallmentAmount}}</td>
+    <td>{{item.DueDate | date:' d MMM y'}}</td>
+    <td><span class="status-alert">{{item.Status}}</span></td>
+    <td class="last-td"><a (click)="editRow(i)"><img class="edit-img" src="assets/images/edit2.png"></a></td>
+
+  </ng-container>
+  <ng-template #editableRow>
+    <!-- Editable form -->
+   
+      <td>{{item.No}}</td>
+      <td><input type="text" formControlName="CustomerName" class="form-control" /></td>
+      <td><input type="text" formControlName="InstallmentAmount"numbersOnly class="form-control"  /></td>
+      <td>
+        <input type="text" name="date"  formControlName="DueDate" placeholder="Start date" class="form-control mt-3 mt-lg-0"    [min]="today" bsDatepicker [bsConfig]="{ containerClass: 'theme-red',isAnimated: true,showClearButton: false,dateInputFormat: 'YYYY-MM-DD' } " placement="bottom">
+        </td>
+      <td><input type="text" formControlName="Status" class="form-control"/></td>
+      <td class="last-td">
+        <button (click)="updateInstallment(i)" class="btn-update">Save</button>
+        <button class="btn-cancel" (click)="editingRowIndex = -1">Cancel</button>
+      </td>
+ 
+  </ng-template>
+</tr>
+          </tbody>
+        </table>
+
+      </form>
+      </div>
+    
+    </div>
+  </div>
+  </div>
+</div>
+  <div class="col-md-12">
+      <div class="btns-group">
+        <button type="button" class="btn btn-cancel"  >Cancel</button>
+        <button type="submit" class="btn btn-save" >
+          
+          <span *ngIf="InstallmentList.length==0">Create</span>
+          <span *ngIf="InstallmentList.length>0">Save</span>
+           </button>
+        <!-- <button type="submit" class="btn btn-save" [disabled]="GenerateOrderForm.invalid " >Save </button> -->
+   
+        
+      </div>
+    
+    </div>
+  </div>
+  </ng-container>
+  <ng-container *ngIf="isLoadingView">
+
+    <div *ngIf="isLoadingView">
+      <div class="my-3 py-3">
+        <app-loading></app-loading>
+      </div>
+    </div>
+  </ng-container>
+  </form>

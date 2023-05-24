@@ -1,0 +1,228 @@
+<div class="card-page">
+  <!-- <div class="row" *ngIf="details; let details; else loading"> -->
+    <div class="row">
+
+    <div class="col-md-12">
+      <div class="card-collect">
+        <h3 style="margin-bottom: 20px;"> Customer Information </h3>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <hr>
+              <div class="col-sm-3">
+                <div class="card-sm">
+                  <h4> Name</h4>
+                 <p>{{PNorders.customer.customerName}}</p>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card-sm">
+                  <h4> Phone No</h4>
+                 <p>{{PNorders.customer.mobile}}</p>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card-sm">
+                  <h4> Total Amount</h4>
+                 <p>{{PNorders.totalAmount}}</p>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card-sm">
+                  <h4> Promissory Notes Amount</h4>
+                 <p>{{PNorders.pnTotalAmount}}</p>
+                </div>
+              </div>
+
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="card-collect">
+        <h3 style="margin-bottom: 20px;"> Order Information </h3>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <hr>
+              <div class="col-sm-2">
+                <div class="card-sm">
+                  <h4> Order No</h4>
+                 <p>{{PNorders.orderId}}</p>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card-sm">
+                  <h4> Order Link</h4>
+                 <p>
+                  
+                  <a routerLink="PNorders.orderQNTRLLink" target="_blank"> {{PNorders.orderQNTRLLink}}</a>
+                  </p>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="card-sm">
+                  <h4> Branch</h4>
+                 <p>{{PNorders.branch.branchName}}</p>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="card-sm">
+                  <h4> Order Date</h4>
+                 <p> {{PNorders.orderDate|date:'d MMM y'}} </p>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card-sm">
+                  <h4> Number Of Installments</h4>
+                 <p> {{PNorders.numberOfInstallments}}</p>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="card-sm">
+                  <h4> Start Date *</h4>
+                 <!-- <input type="date" class="form-control" name="date" value="{{PNorders.startDate|date:'d MMM y'}} "> -->
+                 <input type="date" class="form-control" name="date" [min]="today" value="{{PNorders.startDate | date:'d MMM y'}}">
+                </div>
+              </div>
+
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- *ngIf="PNorders.gaurantor" -->
+    <div class="col-md-12" >
+      <div class="card-collect">
+        <div class="row">
+          <div class="col-md-10">
+            <h3 style="margin-bottom: 20px;"> Guarantor Information </h3>
+          </div>
+          <div class="col-md-2">
+            <span class="Grantor-checkbx" style="margin-right: 10px;">
+              <input type="checkbox" checked class="form-check-input enabled-checkbox"  ><span class="margin-right">  Guarantor</span>
+            </span>
+          </div>
+        </div>
+        
+       
+        
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <hr>
+              <div class="col-sm-3">
+                <div class="card-sm">
+                  <h4> Guarantor Name* </h4>
+                  <!-- <p> {{PNorders.guarantorName}}</p> -->
+               <input type="tex" value="{{PNorders.guarantorName}}" name="" class="form-control">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card-sm">
+                  <h4>Phone No.*</h4>
+<!-- <p> {{PNorders.guarantorPhone}}</p> -->
+                  <input type="text" value="{{PNorders.guarantorPhone}}" name="phone" class="form-control">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card-sm">
+                  <h4> Guarantor ID No.*</h4>
+                  <!-- <p> {{PNorders.guarantorIDNo}}</p> -->
+                  <input type="tex" value="{{PNorders.guarantorIDNo}}" name="GuarantorID" class="form-control">
+                </div>
+              </div>
+
+            
+            </div>
+            <h3 style="margin-bottom: 20px;"> ID Attachment </h3>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <p> Uploaded Id</p>
+                 <input type="tex" value="Ammer Ali" name=""  value="{{PNorders.guarantorAttachment1}}"     class="form-control">
+             
+                
+                  <div class="passicon">
+                    <fa-icon (click)="showImage()" *ngIf="!IsshowImage" class="custom-search-botton"
+                      [icon]="faEye"></fa-icon>
+                    <fa-icon (click)="showImage()" *ngIf="IsshowImage" class="custom-search-botton"
+                      [icon]="faEyeSlash"></fa-icon>
+              </div><div class="passicon-d">
+                <fa-icon (click)="showImage()" *ngIf="!IsshowImage" class="custom-search-botton"
+                  [icon]="faDonwload"></fa-icon>
+          </div>
+  
+            </div>   </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <p> Uploaded Secret file</p>
+                  <input type="tex" value="{{PNorders.guarantorAttachment2}}" name="" class="form-control">
+                  <div class="passicon">
+                    <fa-icon (click)="showImage()" *ngIf="!IsshowImage" class="custom-search-botton"
+                      [icon]="faEye"></fa-icon>
+                    <fa-icon (click)="showImage()" *ngIf="IsshowImage" class="custom-search-botton"
+                      [icon]="faEyeSlash"></fa-icon>
+              </div>
+              <div class="passicon-d">
+                <fa-icon (click)="showImage()" *ngIf="!IsshowImage" class="custom-search-botton"
+                  [icon]="faDonwload"></fa-icon>
+          </div>
+              
+                </div>
+              </div>
+         
+
+          
+       
+        </div>
+      </div>
+    </div>
+  
+
+
+  
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div>
+        <ng-template #loading>
+          <div>
+            <app-loading></app-loading>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+
+  <div class="col-md-3">
+    <p >Promissory Notes Book No :  <span class="pn-book" *ngIf="PNorders.book!=null">{{ PNorders.book.pnBookID ? PNorders.book.pnBookID : 0 }} </span>
+    
+      <span class="pn-book" *ngIf="PNorders.book==null">0 </span>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+ 
+  <div *ngIf="PNorders.book!=null">
+    <!-- <h4> No data to display </h4> -->
+    <app-book-notes> </app-book-notes>
+  </div>
+
+
+  <div class="col-md-12">
+    <div class="btns-group">
+
+      <button type="submit" class="btn btn-save" (click)="Back()"  > Close </button>
+      
+    </div>
+  </div>
+</div>

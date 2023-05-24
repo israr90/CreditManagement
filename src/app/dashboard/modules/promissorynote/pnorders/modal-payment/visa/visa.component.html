@@ -1,0 +1,154 @@
+<div>
+  <form [formGroup]="FormVisa">
+    <div class="card-form">
+      <div class="row" formGroupName="visaCollection">
+        <div class="col-md-12 text-end">
+          <button class="btn btn-trash" (click)="emptyVisaCollection()"> <img src="assets/images/reload.png" alt="">
+          </button>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Date *</label>
+            <input type="date" class="form-control" placeholder="visaDate" formControlName="visaDate" name="visaDate"
+              [required]="FormVisa.get('visaCollection').get('visaCollectionJod').value">
+            <div
+              *ngIf="FormVisa.get('visaCollection').get('visaCollectionJod').value || submitted && FormVisa.get('visaCollection').get('visaCollectionJod').value  &&  FormVisa.get('visaCollection').get('visaDate').invalid || FormVisa.get('visaCollection').get('visaDate').touched"
+              class="error">
+              <span *ngIf="FormVisa.get('visaCollection').get('visaDate').hasError('required')" class="error">
+                This filed is required,</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Amount to pay * </label>
+            <input type="number" class="form-control" placeholder="" formControlName="visaCollectionJod"
+              name="visaCollectionJod" (change)="sendAmount($event)" autocomplete="off" appCheckAmount
+              [required]="FormVisa.get('visaCollection').get('visaCollectionJod').value">
+
+            <span class="error" *ngIf="FormVisa.get('visaCollection').get('visaCollectionJod').invalid &&
+              FormVisa.get('visaCollection').get('visaCollectionJod').errors['min']">
+              This filed is required, can't be zero or negative</span>
+
+            <!-- <div *ngIf="
+              FormVisa.get('visaCollection').get('visaCollectionJod').value <= 0 &&
+              FormVisa.get('visaCollection').get('visaCollectionJod').touched
+
+              ">
+              <span class="error pt-1" [hidden]="!FormVisa.get('visaCollection').get('visaCollectionJod').value ">
+                This filed is required, can't be zero or negative</span>
+            </div> -->
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>First 6 digits of the card *</label>
+            <input type="text" class="form-control" placeholder="" formControlName="visaFirst6Digits"
+              name="visaFirst6Digits" maxlength="6" minlength="6" appPreventMinus numbersOnly
+              [required]="FormVisa.get('visaCollection').get('visaCollectionJod').value" autocomplete="off">
+
+            <div
+              *ngIf="FormVisa.get('visaCollection').get('visaCollectionJod').value || submitted && FormVisa.get('visaCollection').get('visaCollectionJod').value &&  FormVisa.get('visaCollection').get('visaFirst6Digits').invalid || FormVisa.get('visaCollection').get('visaFirst6Digits').touched"
+              class="error">
+              <span
+                *ngIf="FormVisa.get('visaCollection').get('visaFirst6Digits').hasError('required') ||  FormVisa.get('visaCollection').get('visaFirst6Digits').hasError('minlength')"
+                class="error">
+                This filed is required, You must enter 6 digits</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Last 4 digits of the card *</label>
+            <input type="text" class="form-control" placeholder="" formControlName="visaLast4Digits"
+              name="visaLast4Digits" maxlength="4" minlength="4" appPreventMinus numbersOnly
+              [required]="FormVisa.get('visaCollection').get('visaCollectionJod').value" autocomplete="off">
+            <div
+              *ngIf="FormVisa.get('visaCollection').get('visaCollectionJod').value || submitted && FormVisa.get('visaCollection').get('visaCollectionJod').value &&  FormVisa.get('visaCollection').get('visaLast4Digits').invalid || FormVisa.get('visaCollection').get('visaLast4Digits').touched"
+              class="error">
+              <span
+                *ngIf="FormVisa.get('visaCollection').get('visaLast4Digits').hasError('required') ||  FormVisa.get('visaCollection').get('visaLast4Digits').hasError('minlength')"
+                class="error">
+                This filed is required, You must enter 4 digits</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Invoice number *</label>
+            <input type="text" appPreventMinus class="form-control" placeholder="Type ID ..."
+              formControlName="visaInvoiceNo" name="visaInvoiceNo" numbersOnly
+              [required]="FormVisa.get('visaCollection').get('visaCollectionJod').value" autocomplete="off">
+            <div
+              *ngIf="FormVisa.get('visaCollection').get('visaCollectionJod').value || submitted && FormVisa.get('visaCollection').get('visaCollectionJod').value &&  FormVisa.get('visaCollection').get('visaInvoiceNo').invalid || FormVisa.get('visaCollection').get('visaInvoiceNo').touched"
+              class="error">
+              <span *ngIf="FormVisa.get('visaCollection').get('visaInvoiceNo').hasError('required')" class="error">
+                This filed is required,</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Terminal ID * </label>
+            <input type="text" appPreventMinus class="form-control" placeholder="" formControlName="visaTerminalId"
+              name="visaTerminalId" numbersOnly
+              [required]=" FormVisa.get('visaCollection').get('visaCollectionJod').value" autocomplete="off">
+            <div
+              *ngIf="FormVisa.get('visaCollection').get('visaCollectionJod').value || submitted && FormVisa.get('visaCollection').get('visaCollectionJod').value &&  FormVisa.get('visaCollection').get('visaTerminalId').invalid || FormVisa.get('visaCollection').get('visaTerminalId').touched"
+              class="error">
+              <span *ngIf="FormVisa.get('visaCollection').get('visaTerminalId').hasError('required')" class="error">
+                This filed is required,</span>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-md-6">
+          <div class="form-group">
+            <label>Payer name</label>
+            <input type="text" class="form-control" placeholder="Type name" formControlName="visaPayerName"
+              name="visaPayerName" alphabetOnly>
+          </div>
+        </div> -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Payer name *</label>
+            <input type="text" class="form-control" placeholder="Type name" formControlName="visaPayerName"
+              OnlyCharacter [required]=" FormVisa.get('visaCollection').get('visaCollectionJod').value">
+            <div
+              *ngIf="FormVisa.get('visaCollection').get('visaCollectionJod').value || submitted && FormVisa.get('visaCollection').get('visaCollectionJod').value &&  FormVisa.get('visaCollection').get('visaPayerName').invalid || FormVisa.get('visaCollection').get('visaPayerName').touched"
+              class="error">
+              <span *ngIf="FormVisa.get('visaCollection').get('visaPayerName').hasError('required')" class="error">
+                This filed is required,</span>
+            </div>
+
+            <div class="form-check mt-2">
+              <input class="form-check-input" type="checkbox" value="false"
+                [checked]=" FormVisa.get('visaCollection').get('visaPayerName').value  && FormVisa.get('visaCollection').get('visaPayerName').value == details.customer.customerName ? true : false"
+                id="sameForMaster" (change)="isSameCustomer($event)"
+                [required]="FormVisa.get('visaCollection').get('visaCollectionJod').value">
+              <label class="form-check-label" for="sameForMaster">
+                Same Customer
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Bank name * </label>
+            <ng-select id="bankId" placeholder="  " [items]="banks" bindLabel="name" bindValue="id"
+              formControlName="bankId" name="bankId"
+              [required]="FormVisa.get('visaCollection').get('visaCollectionJod').value">
+            </ng-select>
+            <div
+              *ngIf="FormVisa.get('visaCollection').get('visaCollectionJod').value || submitted && FormVisa.get('visaCollection').get('visaCollectionJod').value &&  FormVisa.get('visaCollection').get('bankId').invalid || FormVisa.get('visaCollection').get('bankId').touched"
+              class="error">
+              <span *ngIf="FormVisa.get('visaCollection').get('bankId').hasError('required')" class="error">
+                This filed is required,</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>

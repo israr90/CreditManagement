@@ -1,0 +1,13 @@
+<!-- <div class="modal-header">
+  <h4 class="modal-title"> Confirm </h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div> -->
+<div class="modal-body">
+  <div class="message">
+    <p> You are about to reset the modification of promissory notes Are you sure ? </p>
+  </div>
+</div>
+<div class="modal-footer text-center">
+  <button type="button" class="btn " (click)="close();activeModal.close('Close click')">No</button>
+  <button type="button" class="btn" (click)="confirm()">Yes</button>
+</div>

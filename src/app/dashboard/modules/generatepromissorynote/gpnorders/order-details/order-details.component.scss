@@ -1,0 +1,120 @@
+.card-page {
+  padding: 15px;
+}
+.pt-75 {
+  padding-top: 75px;
+}
+.pt-25 {
+  padding-top: 25px;
+}
+
+.pagination {
+  margin: 5px 0;
+}
+.v-line {
+  margin: 0px 0 10px;
+  border-color: #777;
+}
+.l-line {
+  border-left: 1px solid #ddd;
+}
+.btn.disabled,
+.btn:disabled {
+  background: #f1f3f3 !important;
+  color: #9b9b9b !important;
+  border: 1px solid #f1f3f3;
+  cursor: initial;
+}
+.side-nav-content{
+  display: none!important;
+
+}
+
+.form-control:disabled {
+  background-color: #f8f8f9;
+  border: 0px;
+  opacity: 1;
+  border: 0p;
+}
+.lbcolor{
+  color: black;
+}
+.ml-10{
+  margin-left: 10px;
+}
+
+.right-top{
+  position: absolute;
+  right: 32px;
+  top: 78px;
+  cursor: pointer;
+}
+.img-width{
+  width: 20px;
+  cursor: pointer;
+}
+
+
+.radioBtn{
+  margin: 10px;
+}
+.btn-img{
+  width: 20px !important;
+  }
+  .ml-5{
+    margin-left: 5px;
+  }
+  .margin{
+    margin-bottom: 52px
+    ;
+  }
+  .passicon-left {
+    position: absolute;
+    right: 50%;
+  }
+  // .passicon-right {
+  //   position: absolute;
+  //   right: 5%;
+  // }
+  .form-group {
+    position: relative;
+  }
+  .form-control {
+    padding-right: 30px; /* adjust the value to align the icon */
+  }
+  .passicon {
+    color: #d1d1d1;
+    position: absolute;
+    top: 18px;
+    right: 30px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+  }
+  .passicon-d {
+    color: #2EB93E;
+    position: absolute;
+    top: 18px;
+    right: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+  }
+  .Grantor-checkbx{
+  float:right;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  }
+  .form-check-input:checked {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    margin: 5px;
+}
+.pn-book{
+  background-color: #F8F8F8;
+  padding: 10px;
+  border: 2px solid #F8F8F8;
+  border-radius: 5px;
+}

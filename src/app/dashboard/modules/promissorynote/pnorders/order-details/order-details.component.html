@@ -1,0 +1,97 @@
+<div class="card-page">
+  <!-- <div class="row" *ngIf="details; let details; else loading"> -->
+    <div class="row">
+
+    <div class="col-md-12">
+      <div class="card-collect">
+        <div class="row">
+        <div class="col-md-10">
+          <h3 style="margin-bottom: 20px;">Promissory Note Details</h3>
+        </div>
+        <div  class="col-md-2">
+          <button type="button"  class="btn btn-log"  [style.background-color]="BookNoteDetails.statusObj.lookupBGColor" [style.color]="BookNoteDetails.statusObj.lookupTextColor">{{BookNoteDetails.statusObj.description}} </button>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <hr>
+              <div class="col-sm-6">
+                <div class="card-sm">
+                  <h4> Customer Name</h4>
+                 <p> {{ BookNoteDetails.customer.customerName ? BookNoteDetails.customer.customerName : 'No data' }}</p>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card-sm">
+                  <h4> Promissory Note Paid By</h4>
+          
+                  <p> {{ BookNoteDetails.paidByName ? BookNoteDetails.paidByName : 'No data' }}</p>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card-sm">
+                  <h4> Promissory Note Book Number</h4>
+                  <p> {{ pnBookNotedId ? pnBookNotedId : 'No data' }}</p>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card-sm">
+                  <h4> Promissory Note Number</h4>
+                  <!-- <p> {{ BookNoteDetails.collectedAmount ? BookNoteDetails.collectedAmount : 'No data' }}</p> -->
+                  <p>No data</p>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card-sm">
+                  <h4> Promissory Note Total Collected Amount</h4>
+                  <p> {{ BookNoteDetails.collectedAmount }}</p>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card-sm">
+                  <h4> Promissory Note Remaining Amount</h4>
+                  <p> {{ BookNoteDetails.remainingAmount }}</p>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card-sm">
+                  <h4> Collected History Link</h4>
+                  <p> {{ BookNoteDetails.orderCollectionID ? BookNoteDetails.orderCollectionID : 'No data' }}</p>
+                </div>
+              </div>
+
+            
+            </div>
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="btns-group">
+              <button type="button" class="btn btn-add " (click)="print()"  >Print </button>
+              <button type="submit" class="btn btn-save" (click)="Back()"  > Close </button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div>
+        <ng-template #loading>
+          <div>
+            <app-loading></app-loading>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

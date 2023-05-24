@@ -1,0 +1,267 @@
+<div class="modal-body">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="payment-head">
+          <h3>Customer name </h3>
+          <p> {{detailsItem.customer.customerName}} </p>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card-payment">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="total-card">
+                <p> Grand Amount</p>
+                <div class="total"> {{grandAmount}} JD</div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="total-card justify-content-end">
+                <p>Remaining Amount</p>
+                <div class="total2"> {{remainingAmount | number:'1.2-2'}} JD </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="alert alert-danger text-center" role="alert" *ngIf="remainingMessage">
+          {{remainingMessage}}
+        </div>
+        <div class="alert alert-danger text-center" role="alert" *ngIf="isExceedAmount">
+          You exceed the remaining amount you have to pay
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div>
+          <h4 class="paytitle">Payment Types : </h4>
+        </div>
+        <div class="tab-nav">
+          <div class="payitem" *ngIf="isCash">
+            <button type="button" class="btn" (click)="chooseTab(1)" [class.active]="selected == 1">
+              <div class="imag"><img src="assets/images/payment/cash.png" alt=""></div>
+              <h5> Cash</h5>
+            </button>
+            <h6>{{totalCash ? (totalCash | number:'1.2-2') : '0000' }}</h6>
+          </div>
+          <div class="payitem" *ngIf="isCheque">
+            <button type="button" class="btn" (click)="chooseTab(2)" [class.active]="selected == 2">
+              <div class="imag"><img src="assets/images/payment/cheque.png" alt=""></div>
+              <h5> Cheque</h5>
+            </button>
+            <h6>{{totalCheque ? (totalCheque | number:'1.2-2') : '0000' }}</h6>
+          </div>
+          <div class="payitem" *ngIf="isVisa">
+            <button type="button" class="btn" (click)="chooseTab(3)" [class.active]="selected == 3">
+              <div class="imag"><img src="assets/images/payment/visa.png" alt=""></div>
+              <h5> Visa Card</h5>
+            </button>
+            <h6>{{totalVisa ? (totalVisa | number:'1.2-2') : '0000'}}</h6>
+          </div>
+          <div class="payitem" *ngIf="isMaster">
+            <button type="button" class="btn" (click)="chooseTab(4)" [class.active]="selected == 4">
+              <div class="imag"><img src="assets/images/payment/master.png" alt=""></div>
+              <h5> Mastercard</h5>
+            </button>
+            <h6>{{totalMaster ? (totalMaster | number:'1.2-2') : '0000'}}</h6>
+          </div>
+          <div class="payitem" *ngIf="isExpress">
+            <button type="button" class="btn" (click)="chooseTab(5)" [class.active]="selected == 5">
+              <div class="imag"><img src="assets/images/payment/express.png" alt=""></div>
+              <h5> American Express</h5>
+            </button>
+            <h6>{{totalExpress ? (totalExpress | number:'1.2-2') : '0000'}}</h6>
+          </div>
+          <!-- && details?.customer.onAccountAllowed -->
+          <div class="payitem" *ngIf="isAccount ">
+            <button type="button" class="btn btnacount" (click)="chooseTab(6)" [class.active]="selected == 6"
+              [disabled]="!details?.customer.onAccountAllowed">
+              <!-- <div class="imag"><img src="assets/images/payment/express.png" alt=""></div> -->
+              <h5> On Customer Account </h5>
+            </button>
+            <h6 *ngIf="details?.customer.onAccountAllowed == true">{{totalAccount ? (totalAccount | number:'1.2-2') :
+              '0000'}}
+            </h6>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="tab-content">
+              <div class="tab-item" [hidden]="selected != 1">
+                <div class="card-form">
+                  <div class="row">
+                    <div class="col-md-12 text-end">
+                      <button type="button" class="btn btn-trash" (click)="emptyCashCollections()"> <img
+                          src="assets/images/reload.png" alt=""> </button>
+                    </div>
+
+                    <div class="col-md-12" formArrayName="ordersCashCollections"
+                      *ngFor="let item of ordersCashCollections.controls; let i=index">
+                      <div class="row" [formGroupName]="i">
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Amount to pay in cash </label>
+                            <input type="number" class="form-control" placeholder="Amount"
+                              formControlName="collectedAmount" name="collectedAmount" (change)="convertCash($event,i)"
+                              autocomplete="off" appCheckAmount
+                              [required]="ordersCashCollections.controls[i].get('collectedAmount').value ">
+                            <!-- <div *ngIf="
+                               ordersCashCollections.controls[i].get('collectedAmount').value &&
+                               ordersCashCollections.controls[i].get('collectedAmount').value <= 0 &&
+                               ordersCashCollections.controls[i].get('collectedAmount').touched ||
+                               ordersCashCollections.controls[i].get('collectedAmount').value <= 0 &&
+                               ordersCashCollections.controls[i].get('collectedAmount').touched ">
+                              <span class="error pt-1"
+                                [hidden]="!ordersCashCollections.controls[i].get('collectedAmount').value">
+                                This filed is required, can't be zero or negative</span>
+                            </div> -->
+                            <span class="error"
+                              *ngIf=" ordersCashCollections.controls[i].get('collectedAmount').invalid && ordersCashCollections.controls[i].get('collectedAmount').errors['min']">
+                              This filed is required, can't be zero or negative</span>
+                            <!-- <div
+                              *ngIf="submitted && ordersCashCollections.controls[0].get('collectedAmount').value  && ordersCashCollections.controls[i].get('collectedAmount').invalid">
+                              <span class="error"
+                                *ngIf="ordersCashCollections.controls[i].get('collectedAmount').errors?.['required']">
+                                This field is required
+                              </span>
+                            </div> -->
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group ngselect-curruncy">
+                            <label>Currency</label>
+                            <ng-select id="currencyId" placeholder=" Currency " [items]="registerCurrencies"
+                              bindLabel="name" bindValue="lookupId" formControlName="currencyId" name="currencyId"
+                              (change)="chooseCurrency($event,i)" [required]="item.value.collectedAmount"
+                              (clear)="clearCurruncyId($event,i)">
+                              <ng-template ng-option-tmp let-item="item" let-index="index">
+                                <!-- [hidden]="item.PaymentMethodType == 6 && i == 0" -->
+                                <!-- [hidden]="this.ordersCashCollections.value[i].currencyId == item.lookupId" -->
+                                <span [hidden]="curruncyAry.includes(item.lookupId)">
+                                  {{item.name}} </span>
+                              </ng-template>
+                            </ng-select>
+                            <!-- <p>{{ordersCashCollections.controls[i].get('currencyId').invalid}}</p> -->
+                            <!-- !ordersCashCollections.controls[i].get('collectedAmount').value ||  -->
+                            <div *ngIf="ordersCashCollections.controls[i].get('collectedAmount').value && ordersCashCollections.controls[i].get('currencyId').invalid ||
+                              submitted && ordersCashCollections.controls[i].get('collectedAmount').value &&
+                              ordersCashCollections.controls[i].get('currencyId').invalid " class="error">
+                              <span class="error">This filed is required,</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Value In JOD</label>
+                            <div class="input-group">
+                              <input type="text" class="form-control" placeholder="" formControlName="vjod" readonly>
+                              <button class="btn btn-trash" (click)="removeOrdersCash(i,item)" [hidden]="i == 0"> <img
+                                  src="assets/images/trash.png" alt=""> </button>
+                            </div>
+                            <div class="text-start">
+                              <p class="convert" *ngIf="item.value.currencyId == 9001">1 JOD = {{JOD}} JOD</p>
+                              <p class="convert" *ngIf="item.value.currencyId == 9002">1 JOD = {{USD}} USD</p>
+                              <p class="convert" *ngIf="item.value.currencyId == 9003">1 JOD = {{EUR}} EUR</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <button type="button" class="btn btn-push" (click)="pushrOdersCashCollections()"
+                        [hidden]="registerCurrencies?.length == ordersCashCollections?.length"> <i
+                          class="fa-solid fa-circle-plus"></i> Pay in another currency
+                      </button>
+                    </div>
+                    <div class="col-md-6 text-end">
+                      <!-- <p>1 JOD = 1.0000 JOD</p> -->
+                    </div>
+                    <div class="col-md-4 mt-2" formGroupName="ordersCollection">
+                      <div class="form-group">
+                        <label>Payer name </label>
+                        <input type="text" OnlyCharacter class="form-control" placeholder="Type name"
+                          formControlName="cashPayerName"
+                          [required]="ordersCashCollections.controls[0].get('collectedAmount').value">
+
+                        <div
+                          *ngIf=" ordersCashCollections.controls[0].get('collectedAmount').value &&  formGroup.get('ordersCollection').get('cashPayerName').invalid || formGroup.get('ordersCollection').get('cashPayerName').touched"
+                          class="error">
+                          <span *ngIf="formGroup.get('ordersCollection').get('cashPayerName').hasError('required')"
+                            class="error">This filed is required,</span>
+                        </div>
+
+                        <!-- <div
+                          *ngIf="submitted && formValid['ordersCollection']['cashPayerName'].invalid || formValid['ordersCollection']['cashPayerName'].invalid   && (formValid['ordersCollection']['cashPayerName'].dirty || formValid['ordersCollection']['cashPayerName'].touched )   "
+                          class="ng-dirty">
+                          <span *ngIf="formValid['ordersCollection']['cashPayerName'].errors">
+                            <span class="error">This filed is required,</span>
+                          </span>
+                        </div> -->
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="false"
+                          [checked]="formGroup.get('ordersCollection').get('cashPayerName').value && formGroup.get('ordersCollection').get('cashPayerName').value == details.customer.customerName ? true : false"
+                          id="same" (change)="isSameCustomer($event)">
+                        <label class="form-check-label" for="same">
+                          Same Customer
+                        </label>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="tab-item" [hidden]="selected != 2">
+                <div>
+                  <app-cheque [FormCheque]="formGroup" [details]="details" [banks]="banks" [submitted]="submitted"
+                    (sendAmountCheque)="getAmountCheque($event)"></app-cheque>
+                </div>
+              </div>
+              <div class="tab-item" [hidden]="selected != 3">
+                <app-visa [FormVisa]="formGroup" [details]="details" [banks]="banks" [submitted]="submitted"
+                  (sendAmountVisa)="getAmountVisa($event)"></app-visa>
+              </div>
+              <div class="tab-item" [hidden]="selected != 4">
+                <div>
+                  <app-master [FormMaster]="formGroup" [details]="details" [banks]="banks" [submitted]="submitted"
+                    (sendAmountMaster)="getAmountMaster($event)"></app-master>
+                </div>
+              </div>
+              <div class="tab-item" [hidden]="selected != 5">
+                <div>
+                  <app-express [FormAmex]="formGroup" [details]="details" [banks]="banks" [submitted]="submitted"
+                    (sendAmountexpress)="getAmountExpress($event)"></app-express>
+                </div>
+              </div>
+              <div class="tab-item" [hidden]="selected != 6">
+                <div>
+                  <app-account [FormAccount]="formGroup" [details]="details" [banks]="banks" [submitted]="submitted"
+                    (sendAmountAccount)="getAmountAccount($event)"></app-account>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-md-12">
+            <div class="btns-group my-1 mx-1">
+              <button type="submit" class="btn btn-save" > Next</button>
+            </div>
+          </div> -->
+
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="btns-group my-2">
+          <button type="button" class="btn btn-cancel" (click)="activeModal.close('Close click')">Cancel</button>
+          <button type="submit" class="btn btn-save" *ngIf="!isLoading"> Confirm</button>
+          <button type="button" class="btn btn-save btn-load" *ngIf="isLoading" disabled><i
+              class="fa-solid fa-circle-notch fa-spin"></i></button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

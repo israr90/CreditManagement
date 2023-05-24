@@ -1,0 +1,197 @@
+    <!-- <div class="row" *ngIf="userDetails ; let userDetails; else: loading "> -->
+
+      <div class="row">
+        <form [formGroup]="CmSetupForm" (ngSubmit)="onSubmit()">
+           
+              <div class=" card-collect card-form position-relative">
+                <div class="col-md-12">
+                  <div class="page-title">
+                  <img class="edit-img" src="assets/images/edit3.png" (click)="editMode()"> 
+                    <h3 > Promissory Notes Setup </h3>
+                    
+                  </div>
+                </div>
+
+
+        <div class="main-category mt-0" >
+                 
+        <div class="col-md-12">
+          <input type="hidden"  formControlName="id" >
+            <div class="cat-head">
+              <h3> Promissory Notes   </h3>
+              <button type="button" class="btn btn-book" (click)="PromissoryHideShow()">
+                <i *ngIf="FormShow" class="fa-solid fa-chevron-down"></i>
+                <i *ngIf="!FormShow" class="fa-solid fa-chevron-up"></i></button>
+            </div>
+            <div *ngIf="FormShow">   
+              <hr>
+              <div class="row mt-20" >
+               
+                <div class="col-sm-3">
+                    <div class="from-to-time">
+                      <p> Period between Promissory Notes </p>
+                      <div *ngIf="CmSetupForm.get('periodBetweenPNType').invalid && (CmSetupForm.get('periodBetweenPNType').dirty || CmSetupForm.get('periodBetweenPNType').touched)">
+                        <small class="text-danger" *ngIf="CmSetupForm.get('periodBetweenPNType').errors['required']">required *</small>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-sm-1">
+                  <div class="formGroup">
+                      <input  class="radioBtn" name="periodBetweenPNType"  #periodBetweenPNType formControlName="periodBetweenPNType" value="Days" type="radio"> <label> Days </label>
+      
+      
+                   
+                </div>
+              </div>
+              <div class="col-sm-2">
+                  <div class="formGroup">
+                    
+                    <input type="text" class="form-control" formControlName="daysInput" (input)="formatInput($event)">
+                    <div *ngIf="CmSetupForm.get('daysInput').invalid && (CmSetupForm.get('daysInput').dirty || CmSetupForm.get('daysInput').touched)">
+                      <small class="text-danger" *ngIf="CmSetupForm.get('daysInput').errors['required']">required *</small>
+                    </div>
+                    
+                </div>
+              </div>
+              <div class="col-sm-1">
+                  <div class="formGroup">
+                    
+                    <input  class="radioBtn" name="periodBetweenPNType"  #periodBetweenPNType formControlName="periodBetweenPNType" value="Months" type="radio" > <label> Months </label> 
+                </div>
+              </div>
+              <div class="col-sm-2">
+                  <div class="formGroup">
+                      <!-- <input type="text" class="form-control" (input)="formatInput($event)"> -->
+                     
+                      <input type="text" class="form-control" formControlName="monthsInput" (input)="formatInput($event)">
+                      <div *ngIf="CmSetupForm.get('monthsInput').invalid && (CmSetupForm.get('monthsInput').dirty || CmSetupForm.get('monthsInput').touched)">
+                        <small class="text-danger" *ngIf="CmSetupForm.get('monthsInput').errors['required']">required *</small>
+                      </div>
+                </div>
+              </div>
+              </div>
+              <div class="row "  >
+               
+                  <div class="col-sm-3">
+                      <div class="from-to-time">
+                        <p>Over Due Date Alert Activation </p>
+                        <div *ngIf="CmSetupForm.get('overDueAlertType').invalid && (CmSetupForm.get('overDueAlertType').dirty || CmSetupForm.get('overDueAlertType').touched)">
+                          <small class="text-danger" *ngIf="CmSetupForm.get('overDueAlertType').errors['required']">required *</small>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-1">
+                    <div class="formGroup">
+                      <input  class="radioBtn" name="overDueAlertType"  #overDueAlertType formControlName="overDueAlertType" value="Days" type="radio" >  <label> Months </label> 
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="formGroup">
+                     
+                      <input type="text" class="form-control" (input)="formatInput($event)" formControlName="overDueAlertTypeDaysInput">
+                      <div *ngIf="CmSetupForm.get('overDueAlertTypeDaysInput').invalid && (CmSetupForm.get('overDueAlertTypeDaysInput').dirty || CmSetupForm.get('overDueAlertTypeDaysInput').touched)">
+                        <small class="text-danger" *ngIf="CmSetupForm.get('overDueAlertTypeDaysInput').errors['required']">required *</small>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-sm-1">
+                  <div class="formGroup">
+                      
+                      <input  class="radioBtn" name="overDueAlertType"  #overDueAlertType formControlName="overDueAlertType" value="Months" type="radio" >  <label> Months </label> 
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="formGroup">
+                      
+                        <input type="text"  (input)="formatInput($event)" class="form-control" formControlName="overDueAlertTypeMonthsInput">
+                        <div *ngIf="CmSetupForm.get('overDueAlertTypeMonthsInput').invalid && (CmSetupForm.get('overDueAlertTypeMonthsInput').dirty || CmSetupForm.get('overDueAlertTypeMonthsInput').touched)">
+                          <small class="text-danger" *ngIf="CmSetupForm.get('overDueAlertTypeMonthsInput').errors['required']">required *</small>
+                        </div>
+                  </div>
+                </div>
+                </div>
+                <div class="row" >
+               
+                  <div class="col-sm-3">
+                      <div class="from-to-time">
+                        <p>Manage Promissory Notes within </p>
+                        <div *ngIf="CmSetupForm.get('managePNWithin').invalid && (CmSetupForm.get('managePNWithin').dirty || CmSetupForm.get('managePNWithin').touched)">
+                          <small class="text-danger" *ngIf="CmSetupForm.get('managePNWithin').errors['required']">required *</small>
+                        </div>
+                        
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="formGroup">
+                      <input  class="radioBtn" name="managePNWithin"  #managePNWithin formControlName="managePNWithin" value="Branch Working hours" type="radio" >  <label> Branch Working hours </label>  
+                        
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="formGroup">
+                      <input  class="radioBtn" name="managePNWithin"  #managePNWithin formControlName="managePNWithin" value="Emplyee Working Hours" type="radio" > <label>  Employee Working Hours </label>  
+                  </div>
+                </div>
+               
+                </div>
+              </div>
+          </div>
+        
+   
+      </div>
+        </div>
+     
+        <div class=" card-collect card-form position-relative">
+  <div class="main-category mt-0" >
+           
+  <div class="col-md-12">
+    <input type="hidden"  formControlName="id" >
+      <div class="cat-head">
+        <h3> Credit Management Setup  </h3>
+        <button type="button" class="btn btn-book" >
+          <i  class="fa-solid fa-chevron-down"></i>
+          <!-- <i *ngIf="FormShow" class="fa-solid fa-chevron-up"></i> -->
+        </button>
+      </div>
+      <div *ngIf="FormShow">  
+
+      </div>
+    </div>
+  </div>
+</div>
+
+        <div class="col-md-12">
+            <div class="btns-group">
+              <button type="button" class="btn btn-cancel"  >Cancel</button>
+              <button *ngIf="EditMode" type="submit" class="btn btn-save" [disabled]="CmSetupForm.invalid " >Save </button>
+              <button  *ngIf="!EditMode"  class="btn btn-save" disabled >Save </button>
+              
+            </div>
+          </div>
+      </form>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-12">
+        <ng-template #loading>
+          <div>
+            <app-loading></app-loading>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+<!-- 
+ <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one">
+                <ngb-panel title="Promissory Notes" id="config-panel-one">
+
+                    
+                    <ng-template ngbPanelContent>
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
+                        officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf
+                        moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim
+                        keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                        vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't
+                        heard of them accusamus labore sustainable VHS.
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion> -->

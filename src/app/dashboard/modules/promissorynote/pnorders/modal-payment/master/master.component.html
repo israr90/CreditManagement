@@ -1,0 +1,146 @@
+<div>
+  <form [formGroup]="FormMaster">
+    <div class="card-form">
+      <div class="row" formGroupName="masterCollection">
+        <div class="col-md-12 text-end">
+          <button class="btn btn-trash" (click)="emptyMasterCollection()"> <img src="assets/images/reload.png" alt="">
+          </button>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label> Date *</label>
+            <input type="date" class="form-control" placeholder="masterDate" formControlName="masterDate"
+              name="masterDate" [required]="FormMaster.get('masterCollection').get('masterCollectionJod').value">
+            <div
+              *ngIf="FormMaster.get('masterCollection').get('masterCollectionJod').value || submitted && FormMaster.get('masterCollection').get('masterCollectionJod').value  &&  FormMaster.get('masterCollection').get('masterDate').invalid || FormMaster.get('masterCollection').get('masterDate').touched"
+              class="error">
+              <span *ngIf="FormMaster.get('masterCollection').get('masterDate').hasError('required')" class="error">
+                This filed is required,</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label> Amount to pay * </label>
+            <input type="number" class="form-control" placeholder="" formControlName="masterCollectionJod"
+              name="masterCollectionJod" (change)="sendAmount($event)" autocomplete="off" appCheckAmount
+              [required]="FormMaster.get('masterCollection').get('masterCollectionJod').value">
+
+            <span class="error" *ngIf="FormMaster.get('masterCollection').get('masterCollectionJod').invalid &&
+              FormMaster.get('masterCollection').get('masterCollectionJod').errors['min']">
+              This filed is required, can't be zero or negative</span>
+
+            <!-- <div
+              *ngIf="FormMaster.get('masterCollection').get('masterCollectionJod').value <= 0 && FormMaster.get('masterCollection').get('masterCollectionJod').touched">
+              <span class="error pt-1" [hidden]="!FormMaster.get('masterCollection').get('masterCollectionJod').value">
+                This filed is required, can't be zero or negative</span>
+            </div> -->
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label> First 6 digits of the card * </label>
+            <input type="text" class="form-control" placeholder="" formControlName="masterFirst6Digits"
+              name="masterFirst6Digits" maxlength="6" minlength="6" appPreventMinus
+              [required]="FormMaster.get('masterCollection').get('masterCollectionJod').value" autocomplete="off">
+            <div
+              *ngIf="FormMaster.get('masterCollection').get('masterCollectionJod').value || submitted && FormMaster.get('masterCollection').get('masterCollectionJod').value &&  FormMaster.get('masterCollection').get('masterFirst6Digits').invalid || FormMaster.get('masterCollection').get('masterFirst6Digits').touched"
+              class="error">
+              <span
+                *ngIf="FormMaster.get('masterCollection').get('masterFirst6Digits').hasError('required') ||  FormMaster.get('masterCollection').get('masterFirst6Digits').hasError('minlength')"
+                class="error">
+                This filed is required, You must enter 6 digits</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Last 4 digits of the card *</label>
+            <input type="text" class="form-control" placeholder="" formControlName="masterLast4Digits"
+              name="masterLast4Digits" maxlength="4" minlength="4"   appPreventMinus numbersOnly
+              [required]="FormMaster.get('masterCollection').get('masterCollectionJod').value" autocomplete="off">
+            <div
+              *ngIf="FormMaster.get('masterCollection').get('masterCollectionJod').value || submitted && FormMaster.get('masterCollection').get('masterCollectionJod').value &&  FormMaster.get('masterCollection').get('masterLast4Digits').invalid || FormMaster.get('masterCollection').get('masterLast4Digits').touched"
+              class="error">
+              <span
+                *ngIf="FormMaster.get('masterCollection').get('masterLast4Digits').hasError('required') ||  FormMaster.get('masterCollection').get('masterLast4Digits').hasError('minlength')"
+                class="error">
+                This filed is required, You must enter 4 digits</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Invoice number *</label>
+            <input type="text" class="form-control" placeholder="Type ID ..." formControlName="masterInvoiceNo"
+              name="masterInvoiceNo" [required]="FormMaster.get('masterCollection').get('masterCollectionJod').value"
+              numbersOnly appPreventMinus autocomplete="off">
+            <div
+              *ngIf="FormMaster.get('masterCollection').get('masterCollectionJod').value || submitted && FormMaster.get('masterCollection').get('masterCollectionJod').value &&  FormMaster.get('masterCollection').get('masterInvoiceNo').invalid || FormMaster.get('masterCollection').get('masterInvoiceNo').touched"
+              class="error">
+              <span *ngIf="FormMaster.get('masterCollection').get('masterInvoiceNo').hasError('required')"
+                class="error">
+                This filed is required,</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Terminal ID * </label>
+            <input type="text" class="form-control" placeholder="" formControlName="masterTerminalId"
+              name="masterTerminalId" [required]="FormMaster.get('masterCollection').get('masterCollectionJod').value"
+              numbersOnly appPreventMinus autocomplete="off">
+            <div
+              *ngIf="FormMaster.get('masterCollection').get('masterCollectionJod').value || submitted && FormMaster.get('masterCollection').get('masterCollectionJod').value &&  FormMaster.get('masterCollection').get('masterTerminalId').invalid || FormMaster.get('masterCollection').get('masterTerminalId').touched"
+              class="error">
+              <span *ngIf="FormMaster.get('masterCollection').get('masterTerminalId').hasError('required')"
+                class="error">
+                This filed is required,
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Payer name</label>
+            <input type="text" class="form-control" placeholder="Type name" formControlName="masterPayerName"
+              OnlyCharacter [required]="FormMaster.get('masterCollection').get('masterCollectionJod').value">
+            <div
+              *ngIf=" FormMaster.get('masterCollection').get('masterCollectionJod').value &&  FormMaster.get('masterCollection').get('masterPayerName').invalid || FormMaster.get('masterCollection').get('masterPayerName').touched"
+              class="error">
+              <span *ngIf="FormMaster.get('masterCollection').get('masterPayerName').hasError('required')"
+                class="error">
+                This filed is required,</span>
+            </div>
+
+            <div class="form-check mt-2">
+              <input class="form-check-input" type="checkbox" value="false"
+                [checked]="FormMaster.get('masterCollection').get('masterPayerName').value  && FormMaster.get('masterCollection').get('masterPayerName').value == details.customer.customerName ? true : false"
+                id="sameForMaster" (change)="isSameCustomer($event)">
+              <label class="form-check-label" for="sameForMaster">
+                Same Customer
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Bank name</label>
+            <ng-select id="bankId" placeholder="  " [items]="banks" bindLabel="name" bindValue="id"
+              formControlName="bankId" name="bankId"
+              [required]="FormMaster.get('masterCollection').get('masterCollectionJod').value">
+            </ng-select>
+
+            <div
+              *ngIf="FormMaster.get('masterCollection').get('masterCollectionJod').value || submitted && FormMaster.get('masterCollection').get('masterCollectionJod').value &&  FormMaster.get('masterCollection').get('bankId').invalid || FormMaster.get('masterCollection').get('bankId').touched"
+              class="error">
+              <span *ngIf="FormMaster.get('masterCollection').get('bankId').hasError('required')" class="error">
+                This filed is required,</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

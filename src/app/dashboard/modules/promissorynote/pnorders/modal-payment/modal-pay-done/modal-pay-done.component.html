@@ -1,0 +1,25 @@
+<div class="message" *ngIf="name == 'ok'">
+  <h5> <i class="fa-regular fa-circle-check"></i> Your payment successfully completed </h5>
+
+</div>
+
+<div class="message" *ngIf="name == 'no'">
+  <h5 *ngFor=" let item of errors"> <i class="fa-regular fa-circle-xmark"></i> {{item.errorMessageEn ||
+    item.ErrorMessageEn}} </h5>
+  <!-- <ul>
+    <li *ngFor=" let item of errors"> {{item.ErrorMessageEn}}</li>
+  </ul> -->
+  <button class="btn btnclose" (click)="activeModal.close('Close click')">Close </button>
+
+</div>
+
+<div class="message" *ngIf="name == 'remain'">
+  <!-- <h5> <i class="fa-regular fa-circle-xmark"></i> Remaining amount must be ( 0 ) to confirm </h5> -->
+  <h5> <i class="fa-regular fa-circle-xmark"></i> Payment must be completed, there is an amount left to pay </h5>
+
+  <button class="btn btnclose" (click)="activeModal.close('Close click')">Close </button>
+</div>
+
+
+<!-- services
+Payment must be completed, there is an amount left to pay -->

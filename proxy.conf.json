@@ -1,0 +1,6 @@
+{
+    "/api": {
+      "target": "https://markazia-pos.azurewebsites.net/POSAPI",
+      "secure": false
+    }
+  }

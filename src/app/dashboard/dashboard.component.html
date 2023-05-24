@@ -1,0 +1,13 @@
+<div class="container-fluid g-0">
+  <app-header [titleOfPage]="titleOfPage" (sideNavToggled)="sideNavStatus=$event;"></app-header>
+  <main>
+    <app-sidenav (titleOfPage)="titleOfPage=$event;" (sideNavToggled)="sideNavStatus=$event;"
+      [sideNavStatus]="sideNavStatus" [ngClass]="{'app-side-nav-open':sideNavStatus}"></app-sidenav>
+    <div [ngClass]="{'display-area-shrink':sideNavStatus}" class="display-area p-3">
+
+
+      <router-outlet></router-outlet>
+
+    </div>
+  </main>
+</div>

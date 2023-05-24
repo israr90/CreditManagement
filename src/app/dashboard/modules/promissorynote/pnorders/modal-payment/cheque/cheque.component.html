@@ -1,0 +1,137 @@
+<div>
+  <form [formGroup]="FormCheque">
+    <div class="card-form">
+      <div class="row" formGroupName="ordersChequeCollection">
+        <div class="col-md-12 text-end">
+          <button class="btn btn-trash" (click)="emptyChequeCollection()"> <img src="assets/images/reload.png" alt="">
+          </button>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Date *</label>
+            <input type="date" class="form-control" placeholder="chequeDate" formControlName="chequeDate"
+              name="chequeDate" [required]="FormCheque.get('ordersChequeCollection').get('chequeCollectionJod').value">
+
+            <div *ngIf="
+                    FormCheque.get('ordersChequeCollection').get('chequeCollectionJod').value ||
+                    FormCheque.get('ordersChequeCollection').get('chequeDate').invalid &&
+                    FormCheque.get('ordersChequeCollection').get('chequeDate').touched" class="error">
+              <span *ngIf="FormCheque.get('ordersChequeCollection').get('chequeDate').hasError('required')"
+                class="error">This filed is required,</span>
+            </div>
+
+            <!-- <div
+              *ngIf="submitted&&  formGroup.get('orderCollection').get('cashPayerName').invalid || formGroup.get('orderCollection').get('cashPayerName').touched"
+              class="error">
+              <span *ngIf="FormCheque.get('ordersChequeCollection').get('chequeCollectionJod').hasError('required')"
+                class="error">This filed is required,</span>
+            </div> -->
+
+            <!-- <div *ngIf="submitted && formValidCheque['chequeDate'].errors">
+              <div class="error" *ngIf="formValidCheque['chequeDate'].errors['required']">chequeDate is required</div>
+            </div> -->
+          </div>
+        </div>
+
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Amount to pay *
+            </label>
+            <input type="number" class="form-control" placeholder="Amount" formControlName="chequeCollectionJod"
+              name="chequeCollectionJod" (change)="sendAmount($event)" autocomplete="off" appCheckAmount
+              [required]="FormCheque.get('ordersChequeCollection').get('chequeCollectionJod').value">
+
+            <span class="error" *ngIf="FormCheque.get('ordersChequeCollection').get('chequeCollectionJod').invalid &&
+              FormCheque.get('ordersChequeCollection').get('chequeCollectionJod').errors['min']">
+              This filed is required, can't be zero or negative</span>
+
+            <!-- <div *ngIf="
+                FormCheque.get('ordersChequeCollection').get('chequeCollectionJod').value &&
+                FormCheque.get('ordersChequeCollection').get('chequeCollectionJod').value <= 0 &&
+                FormCheque.get('ordersChequeCollection').get('chequeCollectionJod').touched ||
+                FormCheque.get('ordersChequeCollection').get('chequeCollectionJod').value <= 0 &&
+                FormCheque.get('ordersChequeCollection').get('chequeCollectionJod').touched">
+               <span class="error pt-1"
+                [hidden]="!FormCheque.get('ordersChequeCollection').get('chequeCollectionJod').value ">
+                This filed is
+                required, can't be zero or negative</span>
+            </div> -->
+
+            <!-- <p>  </p> -->
+            <!-- this.formValid.chequeCollection.controls.chequeCollectionJod -->
+            <!-- <div
+              *ngIf="formValidCheque['ordersChequeCollection']['chequeCollectionJod'].invalid && (formValidCheque['ordersChequeCollection']['chequeCollectionJod'].dirty || formValidCheque['ordersChequeCollection']['chequeCollectionJod'].touched)"
+              class="ng-dirty">
+              <span *ngIf="formValidCheque['ordersChequeCollection']['chequeCollectionJod'].errors">
+                This element is required.
+              </span>
+              <span class="error" *ngIf="formValidCheque['ordersChequeCollection']['chequeCollectionJod'].errors['required']">
+                This element is required, please fill.</span>
+
+            </div> -->
+
+            <!-- <div *ngIf="submitted && formValid['chequeCollectionJod'].errors">
+              <div class="error" *ngIf="formValid['chequeCollectionJod'].errors['required']">chequeCollectionJod is
+                required</div>
+            </div> -->
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Cheque No *</label>
+            <input type="text" class="form-control" placeholder="" formControlName="chequeNo" name="chequeNo"
+              numbersOnly [required]="FormCheque.get('ordersChequeCollection').get('chequeCollectionJod').value"
+              autocomplete="off" appPreventMinus>
+            <div *ngIf="FormCheque.get('ordersChequeCollection').get('chequeCollectionJod').value ||
+                FormCheque.get('ordersChequeCollection').get('chequeNo').invalid &&
+                FormCheque.get('ordersChequeCollection').get('chequeNo').touched" class="error">
+              <span *ngIf="FormCheque.get('ordersChequeCollection').get('chequeNo').hasError('required')" class="error">
+                This filed is required,</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Bank *</label>
+            <ng-select id="bankId" placeholder=" Select bank " [items]="banks" bindLabel="name" bindValue="id"
+              formControlName="bankId" name="bankId"
+              [required]="FormCheque.get('ordersChequeCollection').get('chequeCollectionJod').value">
+            </ng-select>
+            <div *ngIf="FormCheque.get('ordersChequeCollection').get('chequeCollectionJod').value ||
+               FormCheque.get('ordersChequeCollection').get('bankId').invalid &&
+               FormCheque.get('ordersChequeCollection').get('bankId').touched" class="error">
+              <span *ngIf="FormCheque.get('ordersChequeCollection').get('bankId').hasError('required')" class="error">
+                This filed is required,</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Cheque drawer name * </label>
+            <input type="text" class="form-control" placeholder="" formControlName="chequeDrawerName" OnlyCharacter
+              [required]="FormCheque.get('ordersChequeCollection').get('chequeCollectionJod').value">
+            <div *ngIf="
+                       FormCheque.get('ordersChequeCollection').get('chequeCollectionJod').value ||
+                       FormCheque.get('ordersChequeCollection').get('chequeDrawerName').invalid &&
+                       FormCheque.get('ordersChequeCollection').get('chequeDrawerName').touched" class="error">
+              <span *ngIf="FormCheque.get('ordersChequeCollection').get('chequeDrawerName').hasError('required')"
+                class="error">
+                This filed is required,</span>
+            </div>
+
+            <div class="form-check mt-2">
+              <input class="form-check-input" type="checkbox" value="false"
+                [checked]="FormCheque.get('ordersChequeCollection').get('chequeDrawerName').value && FormCheque.get('ordersChequeCollection').get('chequeDrawerName').value == details.customer.customerName ? true : false"
+                id="sameForCheque" (change)="isSameCustomer($event)">
+              <label class="form-check-label" for="sameForCheque">
+                Same Customer
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>

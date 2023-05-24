@@ -1,0 +1,128 @@
+.branchesTypes {
+  margin-bottom: 30px;
+  // white-space: nowrap;
+  // overflow: scroll;
+  .btn {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    border: 0px;
+    padding: 10px 15px;
+    color: #929eae;
+    border-radius: 0px;
+    margin: 0px;
+    border-bottom: 2px solid #f5f5f5;
+  }
+  .btn.active {
+    color: #000;
+    border-bottom: 2px solid #dc3545;
+  }
+}
+.branch-total {
+  font-size: 14px;
+  font-weight: 600;
+  color: #78778b;
+  text-align: end;
+}
+.card-table .form-check-input {
+  width: 1.5em !important;
+  height: 1.5em;
+}
+.gap15 {
+  gap: 15px;
+}
+.card-table thead th .btn {
+  padding: 0px;
+}
+
+.card-table tbody td {
+  cursor: default;
+}
+.card-table thead th {
+  padding: 10px 5px 10px 25px !important;
+}
+// .card-table .btn-collect {
+//   background-color: #dc3545 !important;
+//   color: #fff !important;
+// }
+// .card-table .table tr:hover {
+//   background-color: #FFFAFB;
+// }
+
+.btn-collect.btn.disabled,
+.btn-collect.btn:disabled {
+  background: #f1f3f3 !important;
+  color: #9b9b9b !important;
+  border: 1px solid #f1f3f3;
+  cursor: initial;
+}
+.btn-act{
+  cursor: initial;
+}
+
+.last-td{
+
+  cursor: pointer!important;
+}
+.btn-border
+{
+border: #f1f3f3;
+background-color: #e9ecef00;
+}
+.flex-end {
+  padding: 10px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.btn-add {
+  background-color: #dc3545;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 600;
+  padding: 6px 20px;
+  // display: flex;
+  align-items: center;
+  justify-content: end;
+  white-space: nowrap;
+  cursor: pointer!important;
+}.img-refresh{
+  width: 20px;
+  margin-bottom: 5px;
+}
+.btn-add:hover {
+  background-color: #dc3545;
+  color: #fff;
+  cursor: pointer!important;
+}
+.last-td{
+  cursor: pointer!important;
+}
+
+.card-table {
+  margin: 5px 0px;}
+  .bs-datepicker-container {
+
+    position: relative !important;
+    left: 0 !important;
+    top: 0 !important;
+  }
+  .current{
+    background-color: #dc3545;
+    color:white
+  }
+  bs-daterangepicker-container{
+    background-color: #ffffff;
+  padding: 15px 15px 15px 15px!important;
+  // border-spacing: 1em 0.5em;
+  padding: 10px 1em 1em 10px!important;
+  border: 15px solid rgb(247, 245, 241)!important;
+  }
+
+  .status-alert{
+    border-radius: 5px;
+    // background-color: darkred;
+    padding: 9px;
+    width: 100px!important;
+  }
+
+  

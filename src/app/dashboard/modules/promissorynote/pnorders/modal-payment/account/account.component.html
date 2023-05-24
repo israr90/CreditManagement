@@ -1,0 +1,58 @@
+<div>
+  <form [formGroup]="FormAccount">
+
+    <div>
+      <div class="alert alert-danger text-center my-2" role="alert" *ngIf="accounMsg">
+        {{accounMsg}}
+      </div>
+    </div>
+    <div class="card-form">
+      <div class="row" formGroupName="ordersOnAccountCollection">
+        <div class="col-md-12 text-end">
+          <button class="btn btn-trash" (click)="emptyOnAccountCollection()"> <img src="assets/images/reload.png"
+              alt="">
+          </button>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Amount to pay *</label>
+            <!-- required -->
+            <input type="number" class="form-control" placeholder="" placeholder="Amount" appCheckAmount
+              formControlName="onAccountCollectionJod" name="onAccountCollectionJod" (change)="sendAmount($event)">
+
+            <span class="error" *ngIf="FormAccount.get('ordersOnAccountCollection').get('onAccountCollectionJod').invalid &&
+              FormAccount.get('ordersOnAccountCollection').get('onAccountCollectionJod').errors['min']">
+              This filed is required, can't be zero or negative</span>
+            <!-- <div
+              *ngIf="FormAccount.get('ordersOnAccountCollection').get('onAccountCollectionJod').value <= 0 && FormAccount.get('ordersOnAccountCollection').get('onAccountCollectionJod').touched">
+              <span class="error pt-1"> This filed is required, can't be zero or negative</span>
+             </div> -->
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Remaining Available Credit </label>
+            <input type="text" class="form-control" placeholder="" disabled
+              [value]="details?.customer.remainingAvailableCredit">
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Credit limit </label>
+            <input type="text" class="form-control" placeholder="" disabled [value]="details?.customer.creditLimit">
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Consumed Credit</label>
+            <input type="text" class="form-control" placeholder="" disabled [value]="details?.customer.consumedCredit">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,102 @@
+.card {
+    background: #FFFFFF;
+border: 0.5px solid #C4CDD5;
+box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.1);
+border-radius: 8px;
+}
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+}
+.form-check-input:checked {
+    background-color: red;
+    border-color: pink;
+    height: 12;
+}
+.heading1 {
+    font-family: 'Kumbh Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1B212D;
+}
+.heading2 {
+    font-family: 'Kumbh Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 8px;
+   
+    
+    /* Text Color/Text 1 */
+    
+    color: #1B212D;
+}
+.heading3
+{
+    font-family: 'Kumbh Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+
+text-transform: capitalize;
+
+/* Text Color/Text 1 */
+
+color: #1B212D;
+}
+.textMuted {
+    font-family: 'Kumbh Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1B212D;
+}
+.headingSmall {
+    font-family: 'Kumbh Sans';
+    font-style: normal;
+   
+    font-size: 15px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    color: #667085;
+}
+.headingSmallX {
+    font-family: 'Kumbh Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+     color: #344054;
+}
+.tableHeading
+{
+    font-family: 'Kumbh Sans';
+font-style: normal;
+color: #1B212D;
+}
+.smallTextMuted{
+font-family: 'Kumbh Sans';
+font-style: normal;
+font-size: 16px;
+line-height: 20px;
+color: #D1D1D1;
+}
+.title{
+    font-family: 'Kumbh Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 22px;
+
+color: #000000;
+}
+
